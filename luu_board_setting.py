@@ -25,10 +25,8 @@ from luu_function import driver, local, data, Logging, ValidateFailResultAndSyst
 
 
 
-    
 
 def board_create_folder(domain_name):
-   
 
     Logging("------------------------------------------------------B. Menu Board------------------------------------------------------")
     driver.get(domain_name + "/board/list/comp_0/")
