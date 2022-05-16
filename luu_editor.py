@@ -1013,6 +1013,7 @@ def editor_menu_task(domain_name):
     else:
         Logging("Can not Create Editor")
 
+    
     if editor == True:
         try:
             editor_rotate_clockwise_image(domain_name)
@@ -1023,7 +1024,7 @@ def editor_menu_task(domain_name):
     else:
         Logging("Can not Create Editor")
 
-
+    
 
 
 

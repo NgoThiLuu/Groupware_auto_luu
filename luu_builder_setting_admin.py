@@ -1021,21 +1021,26 @@ def write_layout_menubuilder(domain_name):
         click_btn_close_clock_in.click()
     except WebDriverException:
         Logging("Not show Clock In")
+   
     click_btn_more = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["btn_more_copy"])))
     click_btn_more.click()
     time.sleep(2)
-    select_value_del = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["btn_delete_layout_user"])))
-    select_value_del.click()
-    time.sleep(3)
-    Logging("Delete layout Name=> ---------- PASS")
+    #select_value_del = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["btn_delete_layout_user"])))
+    #select_value_del.click()
+    #time.sleep(3)
+    #Logging("Delete layout Name=> ---------- PASS")
 
+    #time.sleep(2)
+    click_btn_back_builder = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["btn_back_builder"])))
+    click_btn_back_builder.click()
+    time.sleep(2)
 
-    '''
+    
     Logging("--------------------- Calendar View  ---------------------")
     try:
         click_icon_calendar_view = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["icon_calendar_view"])))
         click_icon_calendar_view.click()   
-        time.sleep(5)
+        time.sleep(8)
         if 'Lunar' in driver.page_source :
             Logging("Calendar View => ---------- PASS")
         else:
@@ -1045,10 +1050,10 @@ def write_layout_menubuilder(domain_name):
         time.sleep(3)
     except WebDriverException:
         Logging("Not show Calendar View")
-    '''
-
-def delete_menubuilder(domain_name):
     
+    time.sleep(2)
+def delete_menubuilder(domain_name):
+    time.sleep(2)
     Logging("------------------------------------------------------D. Delete Menu ------------------------------------------------------")
     access_menu_home = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["screen_home_gw"])))
     access_menu_home.click()
