@@ -21,7 +21,7 @@ import pathlib
 from pathlib import Path
 import os
 from sys import platform
-from luu_function import driver, local, data, Logging, ValidateFailResultAndSystem,TestCase_LogResult
+from luu_function import driver, local, data, Logging, ValidateFailResultAndSystem,TestCase_LogResult,Yellow,Red,Green
 
 
 
@@ -117,10 +117,10 @@ def contact_create_folder(domain_name):
     forder_contact_create = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["contact"]["show_folder_contact"])))
     time.sleep(2)
     if forder_contact_create.is_displayed():
-        Logging("Show Folder Board successfully => PASS")
+        Logging(Green("Show Folder Board successfully => PASS"))
         TestCase_LogResult(**data["testcase_result"]["contact"]["write_folder_contact"]["pass"])
     else:
-        Logging("Show Folder Board Fail => FAIL")
+        Logging(Red("Show Folder Board Fail => FAIL"))
         ValidateFailResultAndSystem("<div>[Contact]Show Folder Board successfully </div>")
         TestCase_LogResult(**data["testcase_result"]["contact"]["write_folder_contact"]["fail"])
     
@@ -149,10 +149,10 @@ def contact_create_subfolder(domain_name):
     time.sleep(2)
     select_sub_folder_contact = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["contact"]["show_sub_folder"])))
     if select_sub_folder_contact.is_displayed():
-        Logging("Write SubFolder My Contact => PASS")
+        Logging(Green("Write SubFolder My Contact => PASS"))
         TestCase_LogResult(**data["testcase_result"]["contact"]["write_subfolder_contact"]["pass"])
     else:
-        Logging("Write SubFolder My Contact => FAIL")
+        Logging(Red("Write SubFolder My Contact => FAIL"))
         ValidateFailResultAndSystem("<div>[Contact]Write SubFolder My Contact </div>")
         TestCase_LogResult(**data["testcase_result"]["contact"]["write_subfolder_contact"]["fail"])
     
@@ -197,9 +197,9 @@ def contact_edit_folder(domain_name):
     driver.execute_script("window.scrollTo(100, 0)")
     forder_contact_create = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["contact"]["show_folder_contact"])))
     if forder_contact_create.is_displayed():
-        Logging("Edit Folder Board successfully => PASS")
+        Logging(Green("Edit Folder Board successfully => PASS"))
     else:
-        Logging("Edit Folder Board Fail => FAIL")
+        Logging(Red("Edit Folder Board Fail => FAIL"))
         ValidateFailResultAndSystem("<div>[Contact]Edit Folder My Contact </div>")
 
 def contact_delete_folder(domain_name):    
@@ -288,10 +288,10 @@ def contact_manager_folder(domain_name):
     time.sleep(1)
     follder_manager_company = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["pull_the_scroll_bar_view"])))
     if follder_manager_company.is_displayed():
-        Logging("Create Manage Company Folders => PASS")
+        Logging(Green("Create Manage Company Folders => PASS"))
         TestCase_LogResult(**data["testcase_result"]["contact"]["manager_company_contact"]["pass"])
     else:
-        Logging("Create Manage Company Folders => FAIL")
+        Logging(Red("Create Manage Company Folders => FAIL"))
         TestCase_LogResult(**data["testcase_result"]["contact"]["manager_company_contact"]["fail"])
     time.sleep(1)    
 def contact_manager_edit_folder(domain_name):
@@ -376,10 +376,10 @@ def contact_setting_general(domain_name):
     else:
         Logging("=> Update Version =>  Not show")
     if 'Name' in driver.page_source :
-        Logging("=> Select Display Organization Contacts : LIST =>  PASS")
+        Logging(Green("=> Select Display Organization Contacts : LIST =>  PASS"))
         TestCase_LogResult(**data["testcase_result"]["contact"]["setting_general_contact"]["pass"])
     else:
-        Logging("=> Select Display Organization Contacts : LIST =>  FAIL")
+        Logging(Red("=> Select Display Organization Contacts : LIST =>  FAIL"))
         TestCase_LogResult(**data["testcase_result"]["contact"]["setting_general_contact"]["fail"])
     #list_company_contact = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["hide_my_company"])))
     #list_company_contact.click()
@@ -440,10 +440,10 @@ def contact_setting_general_hide_my_contact(domain_name):
     time.sleep(2)
     check_data_hide_my_contact = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["check_data_hide_my_contact"])))
     if check_data_hide_my_contact.is_displayed():
-        Logging("Hide My Contact => FAIL")
+        Logging(Red("Hide My Contact => FAIL"))
         TestCase_LogResult(**data["testcase_result"]["contact"]["setting_general_contact"]["fail"])
     else:
-        Logging("Hide My Contact => PASS")
+        Logging(Green("Hide My Contact => PASS"))
         TestCase_LogResult(**data["testcase_result"]["contact"]["setting_general_contact"]["pass"])
     #click_admin_contact = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["admin_contact"])))
     #click_admin_contact.click()
@@ -596,10 +596,10 @@ def contact_manage_favorites(domain_name):
     Logging("7. Save Folder Manage Favorites successfully")
     time.sleep(1)
     if 'Contact Favorites' in driver.page_source :
-        Logging("=> Manage Favorites =>  PASS")
+        Logging(Green("=> Manage Favorites =>  PASS"))
         TestCase_LogResult(**data["testcase_result"]["contact"]["contact_favorites"]["pass"])
     else:
-        Logging("=> Manage Favorites =>  FAIL")
+        Logging(Red("=> Manage Favorites =>  FAIL"))
         TestCase_LogResult(**data["testcase_result"]["contact"]["contact_favorites"]["fail"])
    
 

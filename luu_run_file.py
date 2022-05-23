@@ -104,13 +104,13 @@ def Luu_My_Execution(domain_name):
     
     luu_log_in.log_in_domain(domain_name)
     luu_board_setting.access_menu_board(domain_name)
-    luu_project_setting.access_menu_project(domain_name)
-    luu_contact_setting.access_menu_contact(domain_name)
-    luu_approval_admin.access_menu_approval(domain_name)
-    luu_resource_add_category.access_menu_resource(domain_name)
-    luu_builder_setting_admin.admin_menu_menubuilder(domain_name)
-    luu_builder_setting_admin.write_menu_menubuilder(domain_name)
-    luu_editor.editor_menu_task(domain_name)
+    #luu_project_setting.access_menu_project(domain_name)
+    #luu_contact_setting.access_menu_contact(domain_name)
+    #luu_approval_admin.access_menu_approval(domain_name)
+    #luu_resource_add_category.access_menu_resource(domain_name)
+    #luu_builder_setting_admin.admin_menu_menubuilder(domain_name)
+    #luu_builder_setting_admin.write_menu_menubuilder(domain_name)
+    #luu_editor.editor_menu_task(domain_name)
 
 
     luu_log = {

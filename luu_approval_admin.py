@@ -22,7 +22,7 @@ from pathlib import Path
 import os
 from sys import platform
 import luu_function
-from luu_function import local, data, Logging, ValidateFailResultAndSystem,TestCase_LogResult
+from luu_function import local, data, Logging, ValidateFailResultAndSystem,TestCase_LogResult,Green,Yellow,Red
 from luu_function import driver
 
 # Page
@@ -136,10 +136,10 @@ def approval_write_all_form(domain_name):
     Logging(total1)
     if total1== total +1 :
         Logging(" ***  Total All Form displayed correctly")
-        Logging("Write All Form => ---------PASS")
+        Logging(Green("Write All Form => ---------PASS"))
         TestCase_LogResult(**data["testcase_result"]["approval"]["write_all_form"]["pass"])
     else:
-        Logging(" Write All Form => ---- FAIL ")
+        Logging(Red(" Write All Form => ---- FAIL "))
         ValidateFailResultAndSystem("<div>[Approval]2. Write All Form </div>")
         TestCase_LogResult(**data["testcase_result"]["approval"]["write_all_form"]["fail"])
     
@@ -272,10 +272,10 @@ def approval_write_all_official_form(domain_name):
     Logging("6. Save All Official Forms successfully")
     time.sleep(2)
     if 'QA Luu' in driver.page_source :
-        Logging("=>  1. Write All Official Forms  PASS")
+        Logging(Green("=>  1. Write All Official Forms  PASS"))
         TestCase_LogResult(**data["testcase_result"]["approval"]["write_all_official_form"]["pass"])
     else:
-        Logging("=>  1. Write All Official Forms  FAIL")
+        Logging(Red("=>  1. Write All Official Forms  FAIL"))
         ValidateFailResultAndSystem("<div>[Approval] Write All Official Forms  </div>")
         TestCase_LogResult(**data["testcase_result"]["approval"]["write_all_official_form"]["fail"])
     Logging("-------------Delete All Official Forms - Admin---------------")
@@ -326,10 +326,10 @@ def approval_view_all_approvals(domain_name):
     Logging("3. View All Approvals successfully")
     time.sleep(1)
     if 'References' in driver.page_source :
-        Logging("=> 1.View All Approvals=> ---------- PASS")
+        Logging(Green("=> 1.View All Approvals=> ---------- PASS"))
         TestCase_LogResult(**data["testcase_result"]["approval"]["view_all_approval"]["pass"])
     else:
-        Logging("=> 1.View All Approvals =>---------- FAIL")
+        Logging(Red("=> 1.View All Approvals =>---------- FAIL"))
         ValidateFailResultAndSystem("<div>[Approvals]2. View All Approvals </div>")
         TestCase_LogResult(**data["testcase_result"]["approval"]["view_all_approval"]["fail"])
     
@@ -351,10 +351,10 @@ def approval_view_official_documentation(domain_name):
     Logging("3. View Official Documentation successfully")
     time.sleep(2)
     if 'Print' in driver.page_source :
-        Logging(" => 1.View Official Documentation =>  PASS")
+        Logging(Green(" => 1.View Official Documentation =>  PASS"))
         TestCase_LogResult(**data["testcase_result"]["approval"]["view_official_documentation"]["pass"])
     else:
-        Logging("=>1.View Official Documentation => FAIL")
+        Logging(Red("=>1.View Official Documentation => FAIL"))
         ValidateFailResultAndSystem("<div>[Approvals]View Official Documentation </div>")
         TestCase_LogResult(**data["testcase_result"]["approval"]["view_official_documentation"]["fail"])
 
@@ -380,10 +380,10 @@ def approval_arbitrary_decision(domain_name):
     time.sleep(1)
     user_arbitrary = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["approval"]["show_arbitrary_decision"])))
     if user_arbitrary.is_displayed():
-        Logging("=> Arbitrary Decision Settings =>--------- PASS")
+        Logging(Green("=> Arbitrary Decision Settings =>--------- PASS"))
         TestCase_LogResult(**data["testcase_result"]["approval"]["arbitrary_decison"]["pass"])
     else:
-        Logging("=> Arbitrary Decision Settings=>---------- FAIL")
+        Logging(Red("=> Arbitrary Decision Settings=>---------- FAIL"))
         TestCase_LogResult(**data["testcase_result"]["approval"]["arbitrary_decison"]["fail"])
     Logging("-------------Delete User Arbitrary Decision Settings ---------------")
     click_user_delete_arbitrary = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["approval"]["select_user_delete_arbitrary_decision"])))
@@ -607,10 +607,10 @@ def approval_default_approval_route_setting(domain_name):
     Logging("11. Close successfully")
     time.sleep(2)
     if 'Luu Luu Test' in driver.page_source :
-        Logging("=> 1. Default Approval Routes => ------------PASS")
+        Logging(Green("=> 1. Default Approval Routes => ------------PASS"))
         TestCase_LogResult(**data["testcase_result"]["approval"]["default_approval_routes_setting"]["pass"])
     else:
-        Logging("=> 1. Default Approval Routes => ------------ FAIL")
+        Logging(Red("=> 1. Default Approval Routes => ------------ FAIL"))
         ValidateFailResultAndSystem("<div>[Approvals]Default Approval Routes</div>")
         TestCase_LogResult(**data["testcase_result"]["approval"]["default_approval_routes_setting"]["fail"])
     
@@ -645,10 +645,10 @@ def approval_manage_my_folder_setting(domain_name):
     Logging("4. Click Button Save Folder successfully")
     time.sleep(2)
     if 'Hoa Giay' in driver.page_source :
-        Logging("=> 1. Add Manage My Folder => ------------PASS")
+        Logging(Green("=> 1. Add Manage My Folder => ------------PASS"))
         TestCase_LogResult(**data["testcase_result"]["approval"]["manager_my_folder_setting"]["pass"])
     else:
-        Logging("=> 1. Add Manage My Folder => ------------ FAIL")
+        Logging(Red("=> 1. Add Manage My Folder => ------------ FAIL"))
         ValidateFailResultAndSystem("<div>[Approvals]Manage My Folder</div>")
         TestCase_LogResult(**data["testcase_result"]["approval"]["manager_my_folder_setting"]["fail"])
     Logging("-------------Delete Manage My Folder---------------")
@@ -735,10 +735,10 @@ def approval_display_setting(domain_name):
     time.sleep(1)
     check_signature_image = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["approval"]["check_data_signature_approval"])))
     if check_signature_image.is_displayed():
-        Logging("=> Change Signature Image  => --------PASS")
+        Logging(Green("=> Change Signature Image  => --------PASS"))
         TestCase_LogResult(**data["testcase_result"]["approval"]["display_settings"]["pass"])
     else:
-        Logging("=> Change Signature Image  => --------FAIL")
+        Logging(Red("=> Change Signature Image  => --------FAIL"))
         ValidateFailResultAndSystem("<div>[Approvals]Change Signature Image</div>")
         TestCase_LogResult(**data["testcase_result"]["approval"]["display_settings"]["fail"])
 

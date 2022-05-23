@@ -9,7 +9,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-
+import random
+from random import randint
 
 
 
@@ -75,6 +76,9 @@ for log in logs:
         ws.cell(row=1, column=6).value = "Date"
         ws.cell(row=1, column=7).value = "Tester"
         wb.save(log)
+
+
+
 
 
 '''
@@ -152,3 +156,34 @@ def close_pop_up():
         print("- Close pop up Successfully")
     except:
         print("- Don't show pop up")
+
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+def Yellow(msg):
+    string_output = bcolors.WARNING + str(msg) + bcolors.ENDC
+    return string_output
+
+
+def Green(msg):
+    string_output = bcolors.OKGREEN + str(msg) + bcolors.ENDC
+    return string_output
+    
+def Red(msg):
+    string_output = bcolors.FAIL + str(msg) + bcolors.ENDC
+    return string_output 
+    
+
+def WaitElementLoaded(time,xpath):
+    WebDriverWait(driver, time).until(EC.presence_of_element_located((By.XPATH, xpath)))
+
+def Wait10s_ClickElement(xpath):
+    WebDriverWait(driver, 10).until(EC.invisibility_of_element_located((By.XPATH, xpath)))

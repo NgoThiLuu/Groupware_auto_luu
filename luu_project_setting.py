@@ -21,7 +21,7 @@ import pathlib
 from pathlib import Path
 import os
 from sys import platform
-from luu_function import local, data, Logging, ValidateFailResultAndSystem,TestCase_LogResult
+from luu_function import local, data, Logging, ValidateFailResultAndSystem,TestCase_LogResult,Yellow,Green,Red
 from luu_function import driver
 # Page
 
@@ -77,10 +77,11 @@ def project_create_folder(domain_name):
 
     folder_name_create_project = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["project"]["show_folder_create"])))
     if folder_name_create_project.is_displayed():
-        Logging("Show Folder Project successfully => PASS")
+        #Logging("Show Folder Project successfully => PASS")
+        Logging(Green("Show Folder Project successfully => PASS"))
         TestCase_LogResult(**data["testcase_result"]["project"]["write_folder_project"]["pass"])
     else:
-        Logging("Show Folder Project => FAIL")
+        Logging(Red("Show Folder Project => FAIL"))
         ValidateFailResultAndSystem("<div>[Project]1. Write folder Project </div>")
         TestCase_LogResult(**data["testcase_result"]["project"]["write_folder_project"]["fail"])
 def project_create_subfolder(domain_name):
@@ -110,10 +111,10 @@ def project_create_subfolder(domain_name):
     time.sleep(1)
     sub_folder_name_create_project = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["project"]["show_folder_create"])))
     if sub_folder_name_create_project.is_displayed():
-        Logging("Show Folder Board successfully => PASS")
+        Logging(Green("Show Folder Board successfully => PASS"))
         TestCase_LogResult(**data["testcase_result"]["project"]["write_subfolder_project"]["pass"])
     else:
-        Logging("Show Folder Board Fail => FAIL")
+        Logging(Red("Show Folder Board Fail => FAIL"))
         ValidateFailResultAndSystem("<div>[Project]2. Write Sub folder Project </div>")
         TestCase_LogResult(**data["testcase_result"]["project"]["write_subfolder_project"]["fail"])
     time.sleep(1)
@@ -133,11 +134,11 @@ def project_delete_folder(domain_name):
     click_parent_folder.click()
     time.sleep(5)
     if 'HCM AAA' in driver.page_source :
-        Logging("1.Delete Subfolder Project FAIL")
+        Logging(Red("1.Delete Subfolder Project FAIL"))
         ValidateFailResultAndSystem("<div>[Project]3. Delete Subfolder Project </div>")
         TestCase_LogResult(**data["testcase_result"]["project"]["delete_subfolder_project"]["fail"])
     else:
-        Logging("1.Delete Subfolder Project PASS")
+        Logging(Green("1.Delete Subfolder Project PASS"))
         TestCase_LogResult(**data["testcase_result"]["project"]["delete_subfolder_project"]["pass"])
     click_icon_delete = driver.find_element_by_xpath("//a[contains(@ng-click, 'deleteFolder($event)')]")
     click_icon_delete.click()
@@ -195,11 +196,11 @@ def project_add_manager(domain_name):
     if click_close_button_admin_manager.is_displayed():
         click_close_button_admin_manager = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["project"]["btn_close_admin_maanger"])))
         click_close_button_admin_manager.click()
-        Logging("Add Project Managers  => PASS")
+        Logging(Green("Add Project Managers  => PASS"))
         time.sleep(1)
         TestCase_LogResult(**data["testcase_result"]["project"]["add_project_manager"]["pass"])
     else:
-        Logging("Add Project Managers => FAIL")
+        Logging(Red("Add Project Managers => FAIL"))
         ValidateFailResultAndSystem("<div>[Project]3. Project Managers  </div>")
         TestCase_LogResult(**data["testcase_result"]["project"]["add_project_manager"]["fail"])
     Logging("6. Save Manager successfully")
@@ -273,10 +274,10 @@ def project_add_extension_form(domain_name):
     
     time.sleep(1)
     if 'Mang Tre Viet Nam' in driver.page_source :
-        Logging("1.Create Set extension form => Pass")
+        Logging(Green("1.Create Set extension form => Pass"))
         TestCase_LogResult(**data["testcase_result"]["project"]["extension_form"]["pass"])
     else:
-        Logging("1.Set extension form Fail")
+        Logging(Red("1.Set extension form Fail"))
         ValidateFailResultAndSystem("<div>[Project]Set extension form</div>")
         TestCase_LogResult(**data["testcase_result"]["project"]["extension_form"]["fail"])
 
@@ -321,10 +322,10 @@ def project_add_work_type(domain_name):
     Logging("5. Click button Save Manage Work Type successfully")
     time.sleep(3)
     if 'Dau Xanh' in driver.page_source :
-        Logging("1.Create Manage Work Type => Pass")
+        Logging(Green("1.Create Manage Work Type => Pass"))
         TestCase_LogResult(**data["testcase_result"]["project"]["work_type"]["pass"])
     else:
-        Logging("1.Manage Work Type Fail")
+        Logging(Red("1.Manage Work Type Fail"))
         ValidateFailResultAndSystem("<div>[Project]Manage Work Type</div>")
         TestCase_LogResult(**data["testcase_result"]["project"]["work_type"]["fail"])
     

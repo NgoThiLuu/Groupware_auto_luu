@@ -21,7 +21,7 @@ import pathlib
 from pathlib import Path
 import os
 from sys import platform
-from luu_function import driver, local, data, Logging, ValidateFailResultAndSystem,TestCase_LogResult
+from luu_function import driver, local, data, Logging, ValidateFailResultAndSystem,TestCase_LogResult,Yellow,Green,Red,WaitElementLoaded,Wait10s_ClickElement
 
 
 
@@ -32,8 +32,11 @@ def board_create_folder(domain_name):
 
     Logging("------------------------------------------------------B. Menu Board------------------------------------------------------")
     driver.get(domain_name + "/board/list/comp_0/")
-    time.sleep(3)
-    click_list_icon_hide_company_board = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["list_icon_hide_company_board"])))
+    #time.sleep(3)
+    #WaitElementLoaded(20,data["board"]["list_icon_hide_company_board"])
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["list_icon_hide_company_board"])))
+    click_list_icon_hide_company_board = driver.find_element_by_xpath(data["board"]["list_icon_hide_company_board"])
     click_list_icon_hide_company_board.click()
     Logging("2. Hide list Company Board successfully")
 
@@ -43,8 +46,15 @@ def board_create_folder(domain_name):
     click_setting_board.click()
     Logging("3. Click settings successfully")
     time.sleep(1)
-    select_my_board = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["click_my_board"])))
+
+
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["click_my_board"])))
+    #select_my_board = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["click_my_board"])))
+    select_my_board = driver.find_element_by_xpath(data["board"]["click_my_board"])
     select_my_board.click()
+
+
     Logging("4. Click My Board successfully")
     folder_name_board = driver.find_element_by_xpath(data["board"]["input_folder_name_board"])
     folder_name_board.send_keys(data["board"]["folder_name_board_setting"])
@@ -61,9 +71,13 @@ def board_create_folder(domain_name):
     check_use_comment = driver.find_element_by_xpath(data["board"]["check_use_comment"])
     check_use_comment.click()
     Logging("6. Check Use comment successfully")
-    turn_on_share = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["turnon_share"])))
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["turnon_share"])))
+    turn_on_share = driver.find_element_by_xpath(data["board"]["turnon_share"])
     turn_on_share.click()
-    click_org = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["click_org_board"])))
+
+    WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["click_org_board"])))
+    click_org = driver.find_element_by_xpath(data["board"]["click_org_board"])
     click_org.click()
     time.sleep(1)
 
@@ -73,7 +87,9 @@ def board_create_folder(domain_name):
     #search_dept.send_keys(data["board"]["dept_name_search_board"])
     #search_dept.send_keys(Keys.RETURN)
     #time.sleep(1)
-    select_user = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["select_user_01"])))
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["select_user_01"])))
+    select_user = driver.find_element_by_xpath(data["board"]["select_user_01"])
     select_user.click()
     
     #select_user_2 = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["select_user_02"])))
@@ -83,10 +99,13 @@ def board_create_folder(domain_name):
     time.sleep(1)
     
 
-    add_user= WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["icon_add_user"])))   # Click on the add user icon\
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["icon_add_user"])))
+    add_user= driver.find_element_by_xpath(data["board"]["icon_add_user"])   # Click on the add user icon\
     add_user.click()
     time.sleep(1)
-    click_save_button = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["save_add_user"])))
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["save_add_user"])))
+    click_save_button = driver.find_element_by_xpath(data["board"]["save_add_user"])
     click_save_button.click()
     Logging("7. Add user successfully")
     time.sleep(1)
@@ -94,31 +113,38 @@ def board_create_folder(domain_name):
     select_permisssion.select_by_visible_text("Read/Write/Modify/Delete")
     Logging("8. Select  Permissison successfully")
     time.sleep(1)
-    save_button_folder_board = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["save_button_folder_board"])))
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["save_button_folder_board"])))
+    save_button_folder_board = driver.find_element_by_xpath(data["board"]["save_button_folder_board"])
     save_button_folder_board.click()
     Logging("9. Save Folder Board successfully")
     time.sleep(1)
-    close_button_folder_board = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["click_button_close_board"])))
+
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["click_button_close_board"])))
+    close_button_folder_board = driver.find_element_by_xpath(data["board"]["click_button_close_board"])
     close_button_folder_board.click()
     Logging("10. Click button Close successfully")
     time.sleep(1)
     
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(1)
-    element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["show_folder_board"])))
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["show_folder_board"])))
+    element = driver.find_element_by_xpath(data["board"]["show_folder_board"])
     element.location_once_scrolled_into_view
     time.sleep(1)
-
-    forder_board_create = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["show_folder_board"])))
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["show_folder_board"])))
+    forder_board_create = driver.find_element_by_xpath(data["board"]["show_folder_board"])
     if forder_board_create.is_displayed():
-        Logging("=> Show Folder Board successfully => PASS")
+        Logging(Green("=> Show Folder Board successfully => PASS"))
         TestCase_LogResult(**data["testcase_result"]["board"]["write_folder_myboard"]["pass"])
         
     else:
-        Logging("=> Show Folder Board Fail => FAIL")
+        Logging(Red("=> Show Folder Board Fail => FAIL"))
         ValidateFailResultAndSystem("<div>[Board]2. Write folder name </div>")
         TestCase_LogResult(**data["testcase_result"]["board"]["write_folder_myboard"]["fail"])
-
+       
     time.sleep(1)
 
 
@@ -126,123 +152,151 @@ def board_create_subfolder(domain_name):
     Logging("-------------- Write SubFolder My Board ---------------")
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(2)    
-    click_icon_list_parent_board = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["icon_list_parent_board"])))
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["icon_list_parent_board"])))
+    click_icon_list_parent_board = driver.find_element_by_xpath(data["board"]["icon_list_parent_board"])
     click_icon_list_parent_board.click()
     time.sleep(1)
-    select_parent_folder_board = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["parent_folder_board"])))
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["parent_folder_board"])))
+    select_parent_folder_board = driver.find_element_by_xpath(data["board"]["parent_folder_board"])
     select_parent_folder_board.click()
-    time.sleep(2)
+    time.sleep(1)
     Logging("11. Select Parent Folder successfully")
-    folder_name_board = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["input_sub_folder_board"])))
+
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["input_sub_folder_board"])))
+    folder_name_board = driver.find_element_by_xpath(data["board"]["input_sub_folder_board"])
     folder_name_board.send_keys(data["board"]["subfolder_name_board_setting"])
     Logging("11. Input Subfolder successfully" + " :  " + data["board"]["subfolder_name_board_setting"])
-    save_button_folder_board = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["save_button_folder_board"])))
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["save_button_folder_board"])))
+    save_button_folder_board = driver.find_element_by_xpath(data["board"]["save_button_folder_board"])
     save_button_folder_board.click()
     Logging("12. Save Folder Board successfully")
-    close_button_folder_board = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["click_button_close_board"])))
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["click_button_close_board"])))
+    close_button_folder_board = driver.find_element_by_xpath(data["board"]["click_button_close_board"])
     close_button_folder_board.click()
     Logging("13. Click button Close successfully")
     time.sleep(2)    
     driver.execute_script("window.scrollTo(100, 0)")
-    select_parent_folder_in_folder_list = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["parent_folder_in_folder_list"])))
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["parent_folder_in_folder_list"])))
+    select_parent_folder_in_folder_list = driver.find_element_by_xpath(data["board"]["parent_folder_in_folder_list"])
     select_parent_folder_in_folder_list.click()
     time.sleep(2)
-    select_sub_folder_board = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["select_sub_folder"])))
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["select_sub_folder"])))
+    select_sub_folder_board = driver.find_element_by_xpath(data["board"]["select_sub_folder"])
     if select_sub_folder_board.is_displayed():
-        Logging("=> Show Folder Board successfully => PASS")
+        #Logging("=> Show Folder Board successfully => PASS")
+        Logging(Green("=> Show Folder Board successfully => PASS"))
         TestCase_LogResult(**data["testcase_result"]["board"]["write_sub_folder_myboard"]["pass"])
     else:
-        Logging("=> Show Folder Board Fail => FAIL")
+        #Logging("=> Show Folder Board Fail => FAIL")
+        Logging(Red("=> Show Folder Board Fail => FAIL"))
         ValidateFailResultAndSystem("<div>[Board]3. Write SubFolder My Board </div>")
         TestCase_LogResult(**data["testcase_result"]["board"]["write_sub_folder_myboard"]["fail"])
 
     Logging("-------------- Delete SubFolder My Board ----------------")
     
-    select_sub_folder_delete_board = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["select_sub_folder"])))
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["select_sub_folder"])))
+    select_sub_folder_delete_board = driver.find_element_by_xpath(data["board"]["select_sub_folder"])
     select_sub_folder_delete_board.click()
     Logging("15. Select subfolder successfully")
     time.sleep(2)
-    click_delete_icon = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, "//a[contains(@ng-click, 'delFolder()')]")))
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["select_sub_folder_delete"])))
+    click_delete_icon = driver.find_element_by_xpath(data["board"]["select_sub_folder_delete"])
     click_delete_icon.click()
     Logging("16. Select icon delete subfolder successfully")
     click_ok_button = driver.find_element_by_xpath(data["board"]["click_ok_button"])
     click_ok_button.click()
-    close_button_folder_board = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["click_button_close_board"])))
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["click_button_close_board"])))
+    close_button_folder_board = driver.find_element_by_xpath(data["board"]["click_button_close_board"])
     close_button_folder_board.click()
     Logging("17. Delete Sub Folder successfully")
 
  
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(1) 
-    select_parent_folder_in_folder_list = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["select_folder_parent"])))
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["select_folder_parent"])))
+    select_parent_folder_in_folder_list = driver.find_element_by_xpath(data["board"]["select_folder_parent"])
     select_parent_folder_in_folder_list.click()
     time.sleep(1)
     if 'Sub 01' in driver.page_source :
-        Logging("=> .Delete SubFolder My Board =>------- FAIL")
+        Logging(Red("=> .Delete SubFolder My Board =>------- FAIL"))
         ValidateFailResultAndSystem("<div>[Board]4. Delete SubFolder My Board </div>")
         TestCase_LogResult(**data["testcase_result"]["board"]["delete_sub_folder_myboard"]["fail"])
     else:
-        Logging("=> .Delete SubFolder My Board =>------- PASS")
+        Logging(Green("=> .Delete SubFolder My Board =>------- PASS"))
         TestCase_LogResult(**data["testcase_result"]["board"]["delete_sub_folder_myboard"]["pass"])
 
 def board_edit_folder(domain_name):    
     Logging("--------------- Edit Folder My Board ----------------")
     
-
-    select_folder_edit_board = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["folder_board_edit"])))
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["folder_board_edit"])))
+    select_folder_edit_board = driver.find_element_by_xpath(data["board"]["folder_board_edit"])
     select_folder_edit_board.click()
-    select_use_anonymous = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["select_folder_type_anonymous"])))
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["select_folder_type_anonymous"])))
+    select_use_anonymous = driver.find_element_by_xpath(data["board"]["folder_board_edit"])
     select_use_anonymous.click()
     #select_permisssion_board = Select(driver.find_element_by_xpath("//li[2]/select"))
     #select_permisssion_board.select_by_visible_text("Read/Write")
     #Logging("18. select prermisssion successfully")
-    save_button_folder_board = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["btn_save_folder"])))
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["btn_save_folder"])))
+    save_button_folder_board = driver.find_element_by_xpath(data["board"]["btn_save_folder"])
     save_button_folder_board.click()
     Logging("19. Save Folder Board successfully")
     time.sleep(1)
-    close_button_folder_board = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["click_button_close_board"])))
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["click_button_close_board"])))
+    close_button_folder_board = driver.find_element_by_xpath(data["board"]["click_button_close_board"])
     close_button_folder_board.click()
     Logging("20. Edit Folder Board  successfully")
     time.sleep(1)
     driver.execute_script("window.scrollTo(100, 0)")
-    forder_board_create = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["show_folder_board"])))
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["show_folder_board"])))
+    forder_board_create = driver.find_element_by_xpath(data["board"]["show_folder_board"])
     if forder_board_create.is_displayed():
-        Logging("=> Edit Folder My Board => PASS")
+        Logging(Green("=> Edit Folder My Board => PASS"))
         TestCase_LogResult(**data["testcase_result"]["board"]["edit_folder_myboard"]["pass"])
     else:
-        Logging("=> Edit Folder My Board => FAIL")
+        Logging(Red("=> Edit Folder My Board => FAIL"))
         ValidateFailResultAndSystem("<div>[Board]5. Edit Folder My Board </div>")
         TestCase_LogResult(**data["testcase_result"]["board"]["edit_folder_myboard"]["fail"])
 
 def board_delete_folder(domain_name):
-    #time.sleep(3)
     click_setting_board = driver.find_element_by_xpath(data["board"]["setting_board"])
     click_setting_board.click()
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(1)
-    select_parent_folder_in_folder_list = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["select_folder_parent"])))
+    WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["select_folder_parent"])))
+    select_parent_folder_in_folder_list = driver.find_element_by_xpath(data["board"]["select_folder_parent"])
     select_parent_folder_in_folder_list.click()
     time.sleep(1)
     driver.execute_script("window.scrollTo(100, 0)")
-    click_delete_icon_parent = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["icon_delete_folder_pa"])))
+    WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["icon_delete_folder_pa"])))
+    click_delete_icon_parent = driver.find_element_by_xpath(data["board"]["icon_delete_folder_pa"])
     click_delete_icon_parent.click()
     
     time.sleep(1)
     click_ok_button = driver.find_element_by_xpath(data["board"]["click_ok_button"])
     click_ok_button.click()
     time.sleep(1)
-    close_button_folder_board = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["click_button_close_board"])))
+    WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["board"]["click_button_close_board"])))
+    close_button_folder_board = driver.find_element_by_xpath(data["board"]["click_button_close_board"])
     close_button_folder_board.click()
     #time.sleep(2)
     Logging("21. Delete Folder Board  successfully")
     #end_time = time.time()
     #loading_time = end_time - start_time
     #Logging(end_time - start_time)
-    time.sleep(1)
+    time.sleep(3)
     
     access_menu_home = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["screen_home_gw"])))
     access_menu_home.click()
-    time.sleep(1)
+    time.sleep(3)
 time.sleep(1)
 
 def access_menu_board(domain_name):
