@@ -185,5 +185,21 @@ def Red(msg):
 def WaitElementLoaded(time,xpath):
     WebDriverWait(driver, time).until(EC.presence_of_element_located((By.XPATH, xpath)))
 
+
+
 def Wait10s_ClickElement(xpath):
-    WebDriverWait(driver, 10).until(EC.invisibility_of_element_located((By.XPATH, xpath)))
+    '''• Usage: Wait until the element visible and do the click
+            return WebElement'''
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
+    element = driver.find_element_by_xpath(xpath)
+    element.click()
+
+    return element
+def Wait10s_InputElement(xpath, value):
+    '''• Usage: Wait until the input box visible and send key value
+            return WebElement'''
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
+    element = driver.find_element_by_xpath(xpath)
+    element.send_keys(value)

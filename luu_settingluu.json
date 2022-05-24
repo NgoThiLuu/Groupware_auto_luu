@@ -189,6 +189,8 @@
         "button_save_sub_folder_project":"//*[@id='ngw.project.setting']//button[contains(@data-ng-click, 'saveFolder($event)')]",
         "parent_folder_project":"//a[contains(text(),'HCM')]",
         "select_subfolder_project_delete":"(//a[contains(text(),'HCM AAA')])",
+        "icon_delete_subfolder_project":"//a[contains(@ng-click, 'deleteFolder($event)')]",
+        "icon_delete_folder_project":"//a[contains(@ng-click, 'deleteFolder($event)')]",
         "ok_button_project":"//button[contains(@ng-click, 'ok()')]",
         "click_admin_foder":"//span[contains(text(),'Admin')]",
         "click_folder_maanger":"//span[contains(.,'Manager')]",
