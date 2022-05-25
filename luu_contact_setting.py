@@ -21,7 +21,7 @@ import pathlib
 from pathlib import Path
 import os
 from sys import platform
-from luu_function import driver, local, data, Logging, ValidateFailResultAndSystem,TestCase_LogResult,Yellow,Red,Green
+from luu_function import driver, local, data, Logging, ValidateFailResultAndSystem,TestCase_LogResult,Yellow,Red,Green,Wait10s_ClickElement,Wait10s_InputElement
 
 
 
@@ -46,23 +46,14 @@ def contact_create_folder(domain_name):
     
     time.sleep(3)
     Logging("------------------------------------------------------C. Menu Contact------------------------------------------------------")
-    #driver.get(domain_name + "/addrbook/list/org_0/")
-    
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["hide_list_contact"])))
-    list_company_contact = driver.find_element_by_xpath(data["contact"]["hide_list_contact"])
-    list_company_contact.click()
+    #driver.get(domain_name + "/addrbook/list/org_0/")  
+    Wait10s_ClickElement(data["contact"]["hide_list_contact"])
     time.sleep(2)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["setting_contact"])))
-    click_setting = driver.find_element_by_xpath(data["contact"]["setting_contact"])
-    click_setting.click()
+    Wait10s_ClickElement(data["contact"]["setting_contact"])
     time.sleep(2)
-    Logging("2. Click list My Company successfully")    
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["folder_my_contacts"])))
-    folder_list = driver.find_element_by_xpath(data["contact"]["folder_my_contacts"])
-    folder_list.click()
+    Logging("2. Click list My Company successfully")  
+    Wait10s_ClickElement(data["contact"]["folder_my_contacts"])  
     Logging("4. Click folder in My Contacts successfully")
-
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["textbox_folder_name"])))
     folder_name = driver.find_element_by_xpath(data["contact"]["textbox_folder_name"])
     folder_name.send_keys(data["contact"]["folder_title"]) 
@@ -73,25 +64,13 @@ def contact_create_folder(domain_name):
         Logging("6. Add name folder =>fail")
     Logging("5. Input folder Name successfully" + " :  " + data["contact"]["folder_title"] )
 
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["textbox_description"])))
-    folder_description = driver.find_element_by_xpath(data["contact"]["textbox_description"])
-    folder_description.send_keys(data["contact"]["title_description"])
+    Wait10s_InputElement(data["contact"]["textbox_description"],data["contact"]["title_description"])
     Logging("6. Input Description successfully" + " :  " +  data["contact"]["title_description"] )
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["turn_on_share"])))
-    click_share = driver.find_element_by_xpath(data["contact"]["turn_on_share"])
-    click_share.click()
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_org_contact"])))
-    click_org = driver.find_element_by_xpath(data["contact"]["click_org_contact"])
-    click_org.click()
+    Wait10s_ClickElement(data["contact"]["turn_on_share"]) 
+    Wait10s_ClickElement(data["contact"]["click_org_contact"])
     time.sleep(1)
-
-    WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["contact"]["share_invite_user_dept"])))
-    select_user = driver.find_element_by_xpath(data["contact"]["share_invite_user_dept"])
-    select_user.click()
+    Wait10s_ClickElement(data["contact"]["share_invite_user_dept"])
     time.sleep(1)
-
 
 
     '''
@@ -108,26 +87,16 @@ def contact_create_folder(domain_name):
     
     '''
 
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_icon_add_user"])))
-    add_user = driver.find_element_by_xpath(data["contact"]["click_icon_add_user"])
-    add_user.click()
+    Wait10s_ClickElement(data["contact"]["click_icon_add_user"])
     time.sleep(1)
-    click_save_button = driver.find_element_by_xpath(data["contact"]["save_add_user"])
-    click_save_button.click()
+    Wait10s_ClickElement(data["contact"]["save_add_user"])
     Logging("7. Select user Share successfully")
     select_permisssion_user = Select(driver.find_element_by_xpath(data["contact"]["select_permission"]))
     select_permisssion_user.select_by_visible_text("Permission to Read/Write/Modify/Delete")
     Logging("8. Select  Permissison successfully")
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["save_folder_my_contact"])))
-    click_save_folder = driver.find_element_by_xpath(data["contact"]["save_folder_my_contact"])
-    click_save_folder.click()
+    Wait10s_ClickElement(data["contact"]["save_folder_my_contact"])
     time.sleep(1)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_button_close_contact"])))
-    click_button_close_contact = driver.find_element_by_xpath(data["contact"]["click_button_close_contact"])
-    click_button_close_contact.click()
+    Wait10s_ClickElement(data["contact"]["click_button_close_contact"])
     Logging("9. Save folder successfully")
     time.sleep(1)
     driver.execute_script("window.scrollTo(100, 0)")
@@ -145,12 +114,8 @@ def contact_create_folder(domain_name):
     
 def contact_create_subfolder(domain_name):    
     Logging("---------------- Write SubFolder My Contact----------------")
-    click_list_my_contacts = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//label/i")))
-    click_list_my_contacts.click()
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["select_parent_folder_contact"])))
-    select_parent_folder = driver.find_element_by_xpath(data["contact"]["select_parent_folder_contact"])
-    select_parent_folder.click()
+    Wait10s_ClickElement(data["contact"]["click_list_my_contact"])
+    Wait10s_ClickElement(data["contact"]["select_parent_folder_contact"])
     time.sleep(1)
     Logging("10. Select Parent folder successfully")
 
@@ -160,23 +125,15 @@ def contact_create_subfolder(domain_name):
     Logging("11. Input subfolder Name successfully" + " :  " + data["contact"]["subfolder_name"] )
     Logging("11. Save Subfolder successfully")
 
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["save_subfolder_contact"])))
-    click_save_folder = driver.find_element_by_xpath(data["contact"]["save_subfolder_contact"])
-    click_save_folder.click()
+    Wait10s_ClickElement(data["contact"]["save_subfolder_contact"])
     time.sleep(2)
 
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_button_close_contact"])))
-    click_button_close_contact = driver.find_element_by_xpath(data["contact"]["click_button_close_contact"])
-    click_button_close_contact.click()
+    Wait10s_ClickElement(data["contact"]["click_button_close_contact"])
     Logging("12. Save folder successfully")
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(1)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["check_folder_parent_contact"])))
-    click_folder_par =driver.find_element_by_xpath(data["contact"]["check_folder_parent_contact"])
-    click_folder_par.click()
+    Wait10s_ClickElement(data["contact"]["check_folder_parent_contact"])
     time.sleep(2)
-
     WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["contact"]["show_sub_folder"])))
     select_sub_folder_contact = driver.find_element_by_xpath(data["contact"]["show_sub_folder"])
     if select_sub_folder_contact.is_displayed():
@@ -190,27 +147,17 @@ def contact_create_subfolder(domain_name):
     Logging("---------------- Delete SubFolder My Contact----------------")
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(1)
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["select_subfolder_contact_delete"])))
-    click_subfolders = driver.find_element_by_xpath(data["contact"]["select_subfolder_contact_delete"])
-    click_subfolders.click()
+    Wait10s_ClickElement(data["contact"]["select_subfolder_contact_delete"])
     time.sleep(1)
-    click_delete = driver.find_element_by_xpath(data["contact"]["click_icon_delete_subfolder_contact"])
-    click_delete.click()
-    click_ok_button = driver.find_element_by_xpath(data["contact"]["click_ok_button"])
-    click_ok_button.click()
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_button_close_contact"])))
-    click_button_close_contact = driver.find_element_by_xpath(data["contact"]["click_button_close_contact"])
-    click_button_close_contact.click()
+    Wait10s_ClickElement(data["contact"]["click_icon_delete_subfolder_contact"])
+    Wait10s_ClickElement(data["contact"]["click_ok_button"])
+    Wait10s_ClickElement(data["contact"]["click_button_close_contact"])
     time.sleep(1)
     Logging("13. Delete Subfolder successfully")
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(1)
-    WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["contact"]["check_folder_parent_contact"])))
-    click_folder_par = driver.find_element_by_xpath(data["contact"]["check_folder_parent_contact"])
-    click_folder_par.click()
+    Wait10s_ClickElement(data["contact"]["check_folder_parent_contact"])
     time.sleep(1)
-
     if 'sub 2' in driver.page_source :
         Logging(Red("1.Delete SubFolder My Contact =>  FAIL"))
         ValidateFailResultAndSystem("<div>[Contact]Write SubFolder My Contact </div>")
@@ -222,15 +169,9 @@ def contact_edit_folder(domain_name):
     Logging("---------------- Edit Folder My Contact---------------")
     select_permisssion = Select(driver.find_element_by_xpath(data["contact"]["edit_permisssion_contacts"]))
     select_permisssion.select_by_visible_text("Read/Write")
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["save_folder_contact_edit"])))
-    click_save_folder = driver.find_element_by_xpath(data["contact"]["save_folder_contact_edit"])
-    click_save_folder.click()
+    Wait10s_ClickElement(data["contact"]["save_folder_contact_edit"])
     time.sleep(1)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_button_close_contact"])))
-    click_button_close_contact = driver.find_element_by_xpath(data["contact"]["click_button_close_contact"])
-    click_button_close_contact.click()
+    Wait10s_ClickElement(data["contact"]["click_button_close_contact"])
     Logging("14. Edit folder successfully")
     time.sleep(1)
     driver.execute_script("window.scrollTo(100, 0)")
@@ -246,22 +187,13 @@ def contact_delete_folder(domain_name):
     Logging("---------------- Delete  Folder Parent---------------")
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(2)
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_folder_contact_edit"])))
-    click_folder = driver.find_element_by_xpath(data["contact"]["click_folder_contact_edit"])
-    click_folder.click()
+    Wait10s_ClickElement(data["contact"]["click_folder_contact_edit"])
     time.sleep(1)
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_icon_delete_subfolder_contact"])))
-    click_delete = driver.find_element_by_xpath(data["contact"]["click_icon_delete_subfolder_contact"])
-    click_delete.click()
+    Wait10s_ClickElement(data["contact"]["click_icon_delete_subfolder_contact"])
     time.sleep(1)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_ok_button"])))
-    click_ok_button = driver.find_element_by_xpath(data["contact"]["click_ok_button"])
-    click_ok_button.click()
+    Wait10s_ClickElement(data["contact"]["click_ok_button"])
     time.sleep(2)
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_button_close_contact"])))
-    click_button_close_contact = driver.find_element_by_xpath(data["contact"]["click_button_close_contact"])
-    click_button_close_contact.click()
+    Wait10s_ClickElement(data["contact"]["click_button_close_contact"])
     Logging("15. Delete folder Parent successfully")
     time.sleep(2)
     
@@ -270,8 +202,6 @@ def contact_manager_folder(domain_name):
     Logging("----------------------------------- Manage Company Folders-----------------------------------")
     driver.refresh()
     time.sleep(5)
-    #click_admin_contact = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["contact"]["admin_contact"])))
-    #click_admin_contact.click()
     time.sleep(1)
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_manager_company_folder"])))
     click_manage_company_folder = driver.find_element_by_xpath(data["contact"]["click_manager_company_folder"])
@@ -284,12 +214,9 @@ def contact_manager_folder(domain_name):
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_manager_company_folder"])))
         click_manage_company_folder = driver.find_element_by_xpath(data["contact"]["click_manager_company_folder"])
         click_manage_company_folder.click()
-    #click_manage_company_folder.click()
     time.sleep(2)
     Logging("1. Click  Manage Company Folders successfully")
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["folder_public_contact"])))
-    click_public_contacts = driver.find_element_by_xpath(data["contact"]["folder_public_contact"])
-    click_public_contacts.click()
+    Wait10s_ClickElement(data["contact"]["folder_public_contact"])
     Logging("2. Click  Public Contact successfully")
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["textbox_folder_name"])))
     folder_name_manage_company = driver.find_element_by_xpath(data["contact"]["textbox_folder_name"])
@@ -302,52 +229,32 @@ def contact_manager_folder(domain_name):
     Logging("5. Input folder Name successfully" + " :  " + data["contact"]["title_folder_manager_company"] )
     time.sleep(2)
     Logging("----------------------------------- Share Folder -----------------------------------")
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["check_radio_share"])))
-    click_radio_share_folder = driver.find_element_by_xpath(data["contact"]["check_radio_share"])
-    click_radio_share_folder.click()
+
+    Wait10s_ClickElement(data["contact"]["check_radio_share"])
     Logging("1.Click Radio Share =>Pass")
     time.sleep(2)
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["org_share_user_share"])))
-    click_org_share_user = driver.find_element_by_xpath(data["contact"]["org_share_user_share"])
-    click_org_share_user.click()
+    Wait10s_ClickElement(data["contact"]["org_share_user_share"])
     Logging("2.Click Organization =>Pass")
     time.sleep(1)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["select_dept_manager_company"])))
-    select_user = driver.find_element_by_xpath(data["contact"]["select_dept_manager_company"])
-    select_user.click()
+    Wait10s_ClickElement(data["contact"]["select_dept_manager_company"])
     time.sleep(1)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["icon_add_user_manager"])))
-    add_user = driver.find_element_by_xpath(data["contact"]["icon_add_user_manager"])
-    add_user.click()
+    Wait10s_ClickElement(data["contact"]["icon_add_user_manager"])
     time.sleep(1)
-
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_save_add_user_mana"])))
     element = driver.find_element_by_xpath(data["contact"]["btn_save_add_user_mana"])
     element.location_once_scrolled_into_view
     time.sleep(1)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_save_add_user_mana"])))
-    click_save_button = driver.find_element_by_xpath(data["contact"]["btn_save_add_user_mana"])
-    click_save_button.click()
+    Wait10s_ClickElement(data["contact"]["btn_save_add_user_mana"])
     time.sleep(1)
     Logging("3. Select user Share successfully")
     select_permisssion_user = Select(driver.find_element_by_xpath(data["contact"]["click_list_permission"]))
     select_permisssion_user.select_by_visible_text(data["contact"]["select_permisson"])
     Logging("4. Select  Permissison successfully")
     time.sleep(1)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_save_manager_folder"])))
-    click_save_folder = driver.find_element_by_xpath(data["contact"]["btn_save_manager_folder"])
-    click_save_folder.click()
+    Wait10s_ClickElement(data["contact"]["btn_save_manager_folder"])
     time.sleep(2)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_button_close_contact"])))
-    click_button_close_contact = driver.find_element_by_xpath(data["contact"]["click_button_close_contact"])
-    click_button_close_contact.click()
+    Wait10s_ClickElement(data["contact"]["click_button_close_contact"])
     Logging("9. Save folder successfully")
-
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["pull_the_scroll_bar_view"])))
     element = driver.find_element_by_xpath(data["contact"]["pull_the_scroll_bar_view"])
     element.location_once_scrolled_into_view
@@ -365,32 +272,19 @@ def contact_manager_edit_folder(domain_name):
     Logging("----------------------------------- Edit Folder -----------------------------------")
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(1)
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["pull_the_scroll_bar_view"])))
-    follder_manager_company = driver.find_element_by_xpath(data["contact"]["pull_the_scroll_bar_view"])
-    follder_manager_company.click()
+    Wait10s_ClickElement(data["contact"]["pull_the_scroll_bar_view"])
     time.sleep(1)
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["txt_about_folder"])))
-    input_about_folder = driver.find_element_by_xpath(data["contact"]["txt_about_folder"])
-    input_about_folder.send_keys(data["contact"]["content_about_folder"])
+    Wait10s_InputElement(data["contact"]["txt_about_folder"],data["contact"]["txt_about_folder"])
     Logging("1. Input Content successfully")
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_save_manager_folder"])))
-    click_save_folder= driver.find_element_by_xpath(data["contact"]["btn_save_manager_folder"])
-    click_save_folder.click()
+    Wait10s_ClickElement(data["contact"]["btn_save_manager_folder"])
     time.sleep(1)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_button_close_contact"])))
-
-    click_button_close_contact = driver.find_element_by_xpath(data["contact"]["click_button_close_contact"])
-    click_button_close_contact.click()
+    Wait10s_ClickElement(data["contact"]["click_button_close_contact"])
     Logging("2. Save folder successfully")
     time.sleep(1)
-
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["pull_the_scroll_bar_view"])))
     element = driver.find_element_by_xpath(data["contact"]["pull_the_scroll_bar_view"])
     element.location_once_scrolled_into_view
     time.sleep(1)
-
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["pull_the_scroll_bar_view"])))
     follder_manager_company = driver.find_element_by_xpath(data["contact"]["pull_the_scroll_bar_view"])
     if follder_manager_company.is_displayed():
@@ -402,27 +296,14 @@ def contact_manager_delete_folder(domain_name):
     Logging("----------------------------------- Delete Manage Company Folders-----------------------------------")
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(1)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["pull_the_scroll_bar_view"])))
-    follder_manager_company = driver.find_element_by_xpath(data["contact"]["pull_the_scroll_bar_view"])
-    follder_manager_company.click()
+    Wait10s_ClickElement(data["contact"]["pull_the_scroll_bar_view"])
     time.sleep(1)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_delete_folder_company"])))
-    delete_follder_manager_company = driver.find_element_by_xpath(data["contact"]["btn_delete_folder_company"])
-    delete_follder_manager_company.click()
+    Wait10s_ClickElement(data["contact"]["btn_delete_folder_company"])
     driver.execute_script("window.scrollTo(0, 100)")
     time.sleep(1)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_ok_delete_folder_manager"])))
-    btn_ok_delete_follder_manager_company = driver.find_element_by_xpath(data["contact"]["btn_ok_delete_folder_manager"])
-    btn_ok_delete_follder_manager_company.click()
+    Wait10s_ClickElement(data["contact"]["btn_ok_delete_folder_manager"])
     time.sleep(1)
-
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_close_delete_folder_manager"])))
-    btn_close_delete_follder_manager_company = driver.find_element_by_xpath(data["contact"]["btn_close_delete_folder_manager"])
-    btn_close_delete_follder_manager_company.click()
+    Wait10s_ClickElement(data["contact"]["btn_close_delete_folder_manager"])
     time.sleep(1)
     Logging("=> Delete Manage Company Folders => PASS")
     time.sleep(1)
@@ -433,38 +314,19 @@ def contact_setting_general(domain_name):
 
     Logging("----------------------------------- Admin Settings - General-----------------------------------")
     Logging("----------------------------------- 1. General - Display Organization Contacts -----------------------------------")
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_admin_setting"])))
-
-    click_admin_settings = driver.find_element_by_xpath(data["contact"]["click_admin_setting"])
-    click_admin_settings.click()
+    Wait10s_ClickElement(data["contact"]["click_admin_setting"])
     Logging("1. Click Admin Settings successfully")
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["select_view_contact_list"])))
-    click_display_org_contact_list = driver.find_element_by_xpath(data["contact"]["select_view_contact_list"])
-    click_display_org_contact_list.click()
+    Wait10s_ClickElement(data["contact"]["select_view_contact_list"])
     Logging("2. Click Display Organization Contacts : LIST  successfully")
-
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_save_view_contact"])))
-    click_btn_save_display_org_contact = driver.find_element_by_xpath(data["contact"]["btn_save_view_contact"])
-    click_btn_save_display_org_contact.click()
+    Wait10s_ClickElement(data["contact"]["btn_save_view_contact"])
     Logging("3. Click Display Organization Contacts : LIST  successfully")
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_close_delete_folder_manager"])))
-    click_btn_close_view_contact = driver.find_element_by_xpath(data["contact"]["btn_close_delete_folder_manager"])
-    click_btn_close_view_contact.click()
+    Wait10s_ClickElement(data["contact"]["btn_close_delete_folder_manager"])
     Logging("4. Click Close  successfully")
     time.sleep(1)
-
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["select_my_company"])))
-    click_my_company_check_data = driver.find_element_by_xpath(data["contact"]["select_my_company"])
-    click_my_company_check_data.click()
+    Wait10s_ClickElement(data["contact"]["select_my_company"])
     Logging("5. Click My Company successfully")
     driver.refresh()
     time.sleep(6)
-    
     if 'A new version is available! Do you want to update?' in driver.page_source :
         WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_update_version"])))
         update_verion = driver.find_element_by_xpath(data["contact"]["btn_update_version"])
@@ -473,7 +335,6 @@ def contact_setting_general(domain_name):
         time.sleep(6)
         driver.get(domain_name + "/addrbook/list/org_0/")
         time.sleep(3)
-        #click_my_company_check_data = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["select_my_company"]))).click()
     else:
         Logging("=> Update Version =>  Not show")
     if 'Name' in driver.page_source :
@@ -482,8 +343,6 @@ def contact_setting_general(domain_name):
     else:
         Logging(Red("=> Select Display Organization Contacts : LIST =>  FAIL"))
         TestCase_LogResult(**data["testcase_result"]["contact"]["setting_general_contact"]["fail"])
-    #list_company_contact = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["hide_my_company"])))
-    #list_company_contact.click()
     time.sleep(2)
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_admin_setting"])))
     click_admin_settings = driver.find_element_by_xpath(data["contact"]["click_admin_setting"])
@@ -491,33 +350,16 @@ def contact_setting_general(domain_name):
         Logging("Show Setting ")
     else:
         Logging("Not Show setting")
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["admin_contact"])))
-        click_admin_contact = driver.find_element_by_xpath(data["contact"]["admin_contact"])
-        click_admin_contact.click()
-
+        Wait10s_ClickElement(data["contact"]["admin_contact"])
     time.sleep(1)
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_admin_setting"])))
-    click_admin_settings = driver.find_element_by_xpath(data["contact"]["click_admin_setting"])
-    click_admin_settings.click()
-
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["select_view_contact_photo"])))
-    click_display_org_contact_photo = driver.find_element_by_xpath(data["contact"]["select_view_contact_photo"])
-    click_display_org_contact_photo.click()
+    Wait10s_ClickElement(data["contact"]["click_admin_setting"])
+    Wait10s_ClickElement(data["contact"]["select_view_contact_photo"])
     time.sleep(1)
     Logging("6. Click Display Organization Contacts : PHOTO  successfully")
-
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_save_view_contact"])))
-    click_btn_save_display_org_contact = driver.find_element_by_xpath(data["contact"]["btn_save_view_contact"])
-    click_btn_save_display_org_contact.click()
+    Wait10s_ClickElement(data["contact"]["btn_save_view_contact"])
     time.sleep(1)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_close_delete_folder_manager"])))
-    click_btn_close_view_contact = driver.find_element_by_xpath(data["contact"]["btn_close_delete_folder_manager"])
-    click_btn_close_view_contact.click()
+    Wait10s_ClickElement(data["contact"]["btn_close_delete_folder_manager"])
     Logging("7. Click Close  successfully")
-    
     time.sleep(1)
 
 
@@ -526,36 +368,20 @@ def contact_setting_general(domain_name):
 def contact_setting_general_hide_my_contact(domain_name):
     Logging("----------------------------------- 1. General - Hide My Contact -----------------------------------")
     time.sleep(1)
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["hide_my_contacts"])))
-    click_hide_my_contacts = driver.find_element_by_xpath(data["contact"]["hide_my_contacts"])
-    click_hide_my_contacts.click()
-    
+    Wait10s_ClickElement(data["contact"]["hide_my_contacts"])
     Logging("7. Click Hide My Contacts  successfully")
-
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_save_view_contact"])))
-    click_btn_save_display_org_contact = driver.find_element_by_xpath(data["contact"]["btn_save_view_contact"])
-    click_btn_save_display_org_contact.click()
-    
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_close_delete_folder_manager"])))
-    click_btn_close_view_contact = driver.find_element_by_xpath(data["contact"]["btn_close_delete_folder_manager"])
-    click_btn_close_view_contact.click()
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["manage_favorites"])))
-    click_manage_favorites = driver.find_element_by_xpath(data["contact"]["manage_favorites"])
-    click_manage_favorites.click()
+    Wait10s_ClickElement(data["contact"]["btn_save_view_contact"])
+    Wait10s_ClickElement(data["contact"]["btn_close_delete_folder_manager"])
+    Wait10s_ClickElement(data["contact"]["manage_favorites"])
     Logging("1. Click Manage Favorites successfully")
     driver.refresh()
     time.sleep(8)
     if 'A new version is available! Do you want to update?' in driver.page_source :
-        WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_update_version"])))
-        update_verion = driver.find_element_by_xpath(data["contact"]["btn_update_version"])
-        update_verion.click()
+        Wait10s_ClickElement(data["contact"]["btn_update_version"])
         Logging("=> Update Version =>  SHOW")
         time.sleep(5)
         driver.get(domain_name + "/addrbook/list/org_0/")
         time.sleep(3)
-        #click_my_company_check_data = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["select_my_company"]))).click()
     else:
         Logging("=> Update Version =>  Not show")
     time.sleep(2)
@@ -567,29 +393,16 @@ def contact_setting_general_hide_my_contact(domain_name):
     else:
         Logging(Green("Hide My Contact => PASS"))
         TestCase_LogResult(**data["testcase_result"]["contact"]["setting_general_contact"]["pass"])
-    #click_admin_contact = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["admin_contact"])))
-    #click_admin_contact.click()
     time.sleep(2)
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_admin_setting"])))
-    click_admin_settings = driver.find_element_by_xpath(data["contact"]["click_admin_setting"])
-    click_admin_settings.click()
+    Wait10s_ClickElement(data["contact"]["click_admin_setting"])
     time.sleep(1)
     Logging("1. Click Admin Settings successfully")
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["hide_my_contacts"])))
-    click_hide_my_contacts = driver.find_element_by_xpath(data["contact"]["hide_my_contacts"])
-    click_hide_my_contacts.click()
+    Wait10s_ClickElement(data["contact"]["hide_my_contacts"])
     time.sleep(1)
     Logging("2. Click Hide My Contacts  successfully")
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_save_view_contact"])))
-    click_btn_save_display_org_contact = driver.find_element_by_xpath(data["contact"]["btn_save_view_contact"])
-    click_btn_save_display_org_contact.click()
+    Wait10s_ClickElement(data["contact"]["btn_save_view_contact"])
     time.sleep(1)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_close_delete_folder_manager"])))
-    click_btn_close_view_contact = driver.find_element_by_xpath(data["contact"]["btn_close_delete_folder_manager"])
-    click_btn_close_view_contact.click()
+    Wait10s_ClickElement(data["contact"]["btn_close_delete_folder_manager"])
     time.sleep(1)
 
 
@@ -597,15 +410,9 @@ def contact_setting_general_public_contact_manager(domain_name):
     
     Logging("----------------------------------- Admin Settings - Public Contacts Manager-----------------------------------")
     
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["org_share_user_share"])))
-    click_org_select_user_contact = driver.find_element_by_xpath(data["contact"]["org_share_user_share"])
-    click_org_select_user_contact.click()
+    Wait10s_ClickElement(data["contact"]["org_share_user_share"])
     Logging("1. Click Organization successfully")
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["select_user_public_dept"])))
-    select_user_dept = driver.find_element_by_xpath(data["contact"]["select_user_public_dept"])
-    select_user_dept.click()
+    Wait10s_ClickElement(data["contact"]["select_user_public_dept"])
     '''
     search_dept = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["txt_search_user_public"])))
     search_dept.send_keys(data["contact"]["dept_name_search"])
@@ -614,26 +421,13 @@ def contact_setting_general_public_contact_manager(domain_name):
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["loading_dialog"])))
     select_user = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["select_user_public"]))).click()
     '''
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["icon_add_user_public"])))
-    icon_add_user = driver.find_element_by_xpath(data["contact"]["icon_add_user_public"])
-    icon_add_user.click()
+    Wait10s_ClickElement(data["contact"]["icon_add_user_public"])
     time.sleep(5)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_save_user_public"])))
-    click_save_button = driver.find_element_by_xpath(data["contact"]["btn_save_user_public"])
-    #click_save_button = driver.find_element_by_xpath(data["contact"]["btn_save_user_public"])
-    click_save_button.click()
+    Wait10s_ClickElement(data["contact"]["btn_save_user_public"])
     Logging("2. Select user Public successfully")
-    #click_btn_save_select_user_public = driver.find_element_by_xpath(data["contact"]["btn_save_public_contact"]).click()
-    WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_save_public_contact"])))
-    click_btn_save_select_user_public = driver.find_element_by_xpath(data["contact"]["btn_save_public_contact"])
-    click_btn_save_select_user_public.click()
+    Wait10s_ClickElement(data["contact"]["btn_save_public_contact"])
     time.sleep(3)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_close_delete_folder_manager"])))
-    btn_close_delete_follder_manager_company = driver.find_element_by_xpath(data["contact"]["btn_close_delete_folder_manager"])
-    btn_close_delete_follder_manager_company.click()
+    Wait10s_ClickElement(data["contact"]["btn_close_delete_folder_manager"])
     Logging("=> Select Public Contacts Manager => PASS")
     time.sleep(3)
     '''
@@ -650,14 +444,9 @@ def contact_setting_general_public_contact_manager(domain_name):
     '''
 
     time.sleep(3)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["org_share_user_share"])))
-    click_org_select_user_contact = driver.find_element_by_xpath(data["contact"]["org_share_user_share"])
-    click_org_select_user_contact.click()
+    Wait10s_ClickElement(data["contact"]["org_share_user_share"])
     time.sleep(1)
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["icon_delete_all_user_public"])))
-    click_delete_user_public_contact = driver.find_element_by_xpath(data["contact"]["icon_delete_all_user_public"])
-    click_delete_user_public_contact.click()
+    Wait10s_ClickElement(data["contact"]["icon_delete_all_user_public"])
     time.sleep(5)
 
     '''
@@ -669,88 +458,48 @@ def contact_setting_general_public_contact_manager(domain_name):
     icon_delete_user = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["contact"]["icon_remove_user_public"]))).click()
     '''
 
-
-
     Logging("4. Click icon remove user successfully")
-    #click_save_button = driver.find_element_by_xpath(data["contact"]["btn_save_user_public"]).click()
-
-    WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_save_user_public"])))
-    click_save_button = driver.find_element_by_xpath(data["contact"]["btn_save_user_public"])
-    click_save_button.click()
-    
+    Wait10s_ClickElement(data["contact"]["btn_save_user_public"])
     Logging("5. click save successfully")
-    
-    WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_save_public_contact"])))
-    click_btn_save_select_user_public = driver.find_element_by_xpath(data["contact"]["btn_save_public_contact"])
-    click_btn_save_select_user_public.click()
-    #click_btn_save_select_user_public = driver.find_element_by_xpath(data["contact"]["btn_save_public_contact"]).click()
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_close_delete_folder_manager"])))
-    btn_close_delete_follder_manager_company = driver.find_element_by_xpath(data["contact"]["btn_close_delete_folder_manager"])
-    btn_close_delete_follder_manager_company.click()
+    Wait10s_ClickElement(data["contact"]["btn_save_public_contact"])
+    Wait10s_ClickElement(data["contact"]["btn_close_delete_folder_manager"])
     time.sleep(2)
 
 
 def contact_manage_favorites(domain_name):
     Logging("----------------------------------- Manage Favorites-----------------------------------")
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["manage_favorites"])))
-    click_manage_favorites = driver.find_element_by_xpath(data["contact"]["manage_favorites"])
-    click_manage_favorites.click()
+    Wait10s_ClickElement(data["contact"]["manage_favorites"])
     Logging("1. Click Manage Favorites successfully")
     time.sleep(2)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["icon_add_favorites_list"])))
-    click_icon_favorites_list = driver.find_element_by_xpath(data["contact"]["icon_add_favorites_list"])
-    click_icon_favorites_list.click()
+    Wait10s_ClickElement(data["contact"]["icon_add_favorites_list"])
     Logging("2. Click icon Favorites List successfully")
     time.sleep(2)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["txt_folder_name_favorites"])))
-    name_folder_favorites = driver.find_element_by_xpath(data["contact"]["txt_folder_name_favorites"])
-    name_folder_favorites.send_keys(data["contact"]["folder_name_favorites_list"])
+    Wait10s_InputElement(data["contact"]["txt_folder_name_favorites"],data["contact"]["folder_name_favorites_list"])
     Logging("3. Input Folder Name Favorites successfully")
     time.sleep(2)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["click_icon_org"])))
-    click_org_manage_favorites = driver.find_element_by_xpath(data["contact"]["click_icon_org"])
-    click_org_manage_favorites.click()
+    Wait10s_ClickElement(data["contact"]["click_icon_org"])
     Logging("4. Click Organization successfully")
     time.sleep(4)
     try:
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["check_user_favorites_contact_global3"])))
         Logging("=> Domain Global3")
         time.sleep(1)
-        select_user_global3 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["select_dept_favorites_contact_gloabl3"])))
-        select_user_global3.click()
+        Wait10s_ClickElement(data["contact"]["select_dept_favorites_contact_gloabl3"])
     except WebDriverException:
         Logging("=>NOT Domain Global3")
-        select_user = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["select_dept_favorites_contact"])))
-        select_user.click()
-        
+        Wait10s_ClickElement(data["contact"]["select_dept_favorites_contact"])
     time.sleep(2)
-
-    #select_user = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["select_dept_favorites_contact"]))).click()
-    WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["contact"]["icon_add_user_favorites"])))
-    icon_add_user = driver.find_element_by_xpath(data["contact"]["icon_add_user_favorites"])
-    icon_add_user.click()
+    Wait10s_ClickElement(data["contact"]["icon_add_user_favorites"])
     time.sleep(2)
-    WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_save_user_favorites"])))
-    click_save_button = driver.find_element_by_xpath(data["contact"]["btn_save_user_favorites"])
-    click_save_button.click()
+    Wait10s_ClickElement(data["contact"]["btn_save_user_favorites"])
     time.sleep(1)
     Logging("5. Select user Favorites successfully")
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["txt_description_add_folder"])))
-    input_description = driver.find_element_by_xpath(data["contact"]["txt_description_add_folder"])
-    input_description.send_keys(data["contact"]["content_description_add_folder"])
+    Wait10s_InputElement(data["contact"]["txt_description_add_folder"],data["contact"]["content_description_add_folder"])
     Logging("6. Input Description successfully")
     time.sleep(1)
-    click_btn_save_select_user_favorites = driver.find_element_by_xpath(data["contact"]["btn_save_user_contact_favorites"])
-    click_btn_save_select_user_favorites.click()
+    Wait10s_ClickElement(data["contact"]["btn_save_user_contact_favorites"])
     time.sleep(2)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_close_delete_folder_favorites"])))
-    btn_close_delete_follder_manager_favorites = driver.find_element_by_xpath(data["contact"]["btn_close_delete_folder_favorites"])
-    btn_close_delete_follder_manager_favorites.click()
+    Wait10s_ClickElement(data["contact"]["btn_close_delete_folder_favorites"])
     Logging("7. Save Folder Manage Favorites successfully")
     time.sleep(1)
     if 'Contact Favorites' in driver.page_source :
@@ -762,24 +511,13 @@ def contact_manage_favorites(domain_name):
    
 
     Logging("-----------------------------------Delete Manage Favorites-----------------------------------")
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["select_folder_favorites_delete"])))
-    select_folder_favorites_delete = driver.find_element_by_xpath(data["contact"]["select_folder_favorites_delete"])
-    select_folder_favorites_delete.click()
+    Wait10s_ClickElement(data["contact"]["select_folder_favorites_delete"])
     Logging("1. Click Folder Favorites Delete successfully")
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_delete_folder_favorites"])))
-    click_btn_delete = driver.find_element_by_xpath(data["contact"]["btn_delete_folder_favorites"])
-    click_btn_delete.click()
+    Wait10s_ClickElement(data["contact"]["btn_delete_folder_favorites"])
     Logging("2. Click button Delete successfully")
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_ok_folder_favorites"])))
-    click_btn_ok_delete_folder_favorites = driver.find_element_by_xpath(data["contact"]["btn_ok_folder_favorites"])
-    click_btn_ok_delete_folder_favorites.click()
+    Wait10s_ClickElement(data["contact"]["btn_ok_folder_favorites"])
     Logging("3. Click button Delete successfully")
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_close_delete_folder_favorites"])))
-    click_btn_close_delete_folder_favorites = driver.find_element_by_xpath(data["contact"]["btn_close_delete_folder_favorites"])
-    click_btn_close_delete_folder_favorites.click()
+    Wait10s_ClickElement(data["contact"]["btn_close_delete_folder_favorites"])
     Logging("4. Click button Close successfully")
     Logging("5. Delete Manage Favorites successfully")
     time.sleep(1)

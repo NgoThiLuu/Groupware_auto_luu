@@ -36,6 +36,7 @@
         "save_folder_my_contact":"//button[contains(@data-ng-click, 'saveFolder(form)')]",
         "click_button_close_contact":"//button[contains(@ng-click, 'cancel(false)')]",
         "click_ok_button":"//button[contains(.,'OK')]",
+        "click_list_my_contact":"//label/i",
         "select_parent_folder_contact":"//div[@class='up_folder_tree']//a[contains(.,'Luu Ngo')]",
         "input_sub_folder_contacts":"//div[@class='widget-main']//input[contains(@type,'text')]", 
         "subfolder_name":"sub 2",
