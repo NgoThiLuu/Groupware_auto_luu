@@ -21,7 +21,7 @@ import pathlib
 from pathlib import Path
 import os
 from sys import platform
-from luu_function import driver, local, data, Logging, ValidateFailResultAndSystem,TestCase_LogResult,Yellow,Green,Red,WaitElementLoaded,Wait10s_ClickElement,Wait10s_InputElement
+from luu_function import driver, local, data, Logging, ValidateFailResultAndSystem,TestCase_LogResult,Yellow,Green,Red,WaitElementLoaded,Wait10s_ClickElement,Wait10s_InputElement,scroll_view
 
 
 
@@ -34,16 +34,13 @@ def board_create_folder(domain_name):
     driver.get(domain_name + "/board/list/comp_0/")
     Wait10s_ClickElement(data["board"]["list_icon_hide_company_board"])
     Logging("2. Hide list Company Board successfully")
-
     time.sleep(1)
     Logging("-------------- Write Folder My Board --------------")
     Wait10s_ClickElement(data["board"]["setting_board"])
     Logging("3. Click settings successfully")
     time.sleep(1)
-    
     Wait10s_ClickElement(data["board"]["click_my_board"])
     Logging("4. Click My Board successfully")
-    #Wait10s_InputElement(data["board"]["input_folder_name_board"],data["board"]["folder_name_board_setting"])
     folder_name_board = driver.find_element_by_xpath(data["board"]["input_folder_name_board"])
     folder_name_board.send_keys(data["board"]["folder_name_board_setting"])
     content_subject=folder_name_board.get_attribute("value")
@@ -52,8 +49,7 @@ def board_create_folder(domain_name):
     else:
         Logging("5. Add name folder =>fail")
         ValidateFailResultAndSystem("<div>[Board]1. Input folder name </div>")
-    input_description_board = driver.find_element_by_xpath(data["board"]["textbox_description_board"])
-    input_description_board.send_keys(data["board"]["description_board"])
+    Wait10s_InputElement(data["board"]["textbox_description_board"],data["board"]["description_board"])
     time.sleep(1)
     Logging("5. Input Description successfully")
     Wait10s_ClickElement(data["board"]["check_use_comment"])
@@ -64,11 +60,8 @@ def board_create_folder(domain_name):
     Wait10s_ClickElement(data["board"]["select_user_01"])
     Wait10s_ClickElement(data["board"]["icon_add_user"])
     time.sleep(1)
-
     Wait10s_ClickElement(data["board"]["save_add_user"])
     Logging("7. Add user successfully")
-
-    
     time.sleep(1)
     select_permisssion = Select(driver.find_element_by_xpath(data["board"]["select_permisssion_board"])) 
     select_permisssion.select_by_visible_text("Read/Write/Modify/Delete")
@@ -80,25 +73,24 @@ def board_create_folder(domain_name):
     Wait10s_ClickElement(data["board"]["click_button_close_board"])
     Logging("10. Click button Close successfully")
     time.sleep(1)
-    
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(1)
-
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["show_folder_board"])))
-    element = driver.find_element_by_xpath(data["board"]["show_folder_board"])
-    element.location_once_scrolled_into_view
+    
+    scroll_view(data["board"]["show_folder_board"])
+    #WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["show_folder_board"])))
+    #element = driver.find_element_by_xpath(data["board"]["show_folder_board"])
+    #element.location_once_scrolled_into_view
+    
     time.sleep(1)
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["show_folder_board"])))
     forder_board_create = driver.find_element_by_xpath(data["board"]["show_folder_board"])
     if forder_board_create.is_displayed():
         Logging(Green("=> Show Folder Board successfully => PASS"))
         TestCase_LogResult(**data["testcase_result"]["board"]["write_folder_myboard"]["pass"])
-        
     else:
         Logging(Red("=> Show Folder Board Fail => FAIL"))
         ValidateFailResultAndSystem("<div>[Board]2. Write folder name </div>")
         TestCase_LogResult(**data["testcase_result"]["board"]["write_folder_myboard"]["fail"])
-       
     time.sleep(1)
 
 
@@ -111,24 +103,16 @@ def board_create_subfolder(domain_name):
     Wait10s_ClickElement(data["board"]["parent_folder_board"])
     time.sleep(1)
     Logging("11. Select Parent Folder successfully")
-
     Wait10s_InputElement(data["board"]["input_sub_folder_board"],data["board"]["subfolder_name_board_setting"])
-    #WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["input_sub_folder_board"])))
-    #folder_name_board = driver.find_element_by_xpath(data["board"]["input_sub_folder_board"])
-    #folder_name_board.send_keys(data["board"]["subfolder_name_board_setting"])
     Logging("11. Input Subfolder successfully" + " :  " + data["board"]["subfolder_name_board_setting"])
-
-
     Wait10s_ClickElement(data["board"]["save_button_folder_board"])
     Logging("12. Save Folder Board successfully")
     Wait10s_ClickElement(data["board"]["click_button_close_board"])
     Logging("13. Click button Close successfully")
     time.sleep(2)    
     driver.execute_script("window.scrollTo(100, 0)")
-
     Wait10s_ClickElement(data["board"]["parent_folder_in_folder_list"])
     time.sleep(2)
-
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["select_sub_folder"])))
     select_sub_folder_board = driver.find_element_by_xpath(data["board"]["select_sub_folder"])
     if select_sub_folder_board.is_displayed():
@@ -162,9 +146,7 @@ def board_create_subfolder(domain_name):
 def board_edit_folder(domain_name):    
     Logging("--------------- Edit Folder My Board ----------------")
     Wait10s_ClickElement(data["board"]["folder_board_edit"])
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["board"]["select_folder_type_anonymous"])))
-    select_use_anonymous = driver.find_element_by_xpath(data["board"]["folder_board_edit"])
-    select_use_anonymous.click()
+    Wait10s_ClickElement(data["board"]["select_folder_type_anonymous"])
     Wait10s_ClickElement(data["board"]["btn_save_folder"])
     Logging("19. Save Folder Board successfully")
     time.sleep(1)
@@ -239,16 +221,6 @@ def access_menu_board(domain_name):
         Logging("Delete Folder Fail")
 
     time.sleep(1)
-
-
-
-
-
-
-
-
-
-
 
 
 def is_Displayed(driver,xpath):

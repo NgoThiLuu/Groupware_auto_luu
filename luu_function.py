@@ -203,3 +203,10 @@ def Wait10s_InputElement(xpath, value):
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
     element = driver.find_element_by_xpath(xpath)
     element.send_keys(value)
+
+
+def scroll_view(xpath):
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
+    element = driver.find_element_by_xpath(xpath)
+    element.location_once_scrolled_into_view
+    return element

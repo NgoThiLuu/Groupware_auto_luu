@@ -21,7 +21,7 @@ import pathlib
 from pathlib import Path
 import os
 from sys import platform
-from luu_function import local, data, Logging, ValidateFailResultAndSystem,TestCase_LogResult,Yellow,Green,Red,Wait10s_InputElement,Wait10s_ClickElement
+from luu_function import local, data, Logging, ValidateFailResultAndSystem,TestCase_LogResult,Yellow,Green,Red,Wait10s_InputElement,Wait10s_ClickElement,scroll_view
 from luu_function import driver
 # Page
 
@@ -53,13 +53,10 @@ def project_create_folder(domain_name):
     Wait10s_ClickElement(data["project"]["manage_folder_project"])
     Logging("2. Click Manage Folder successfully")
     time.sleep(1)
-
     Wait10s_ClickElement(data["project"]["folder_list_project"])
     Logging("2. Click list name Project successfully")
     Wait10s_ClickElement(data["project"]["icon_plus_project"])
     Logging("3. Click icon plus successfully")
-
-
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["project"]["input_folder_mane_project"])))
     folder_name_manage_project = driver.find_element_by_xpath(data["project"]["input_folder_mane_project"])
     folder_name_manage_project.send_keys(data["project"]["folder_name_project"])
@@ -236,9 +233,11 @@ def project_add_manager(domain_name):
     '''
 def project_add_extension_form(domain_name):
     Logging("=============== Set extension form =============== ")
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["project"]["click_set_extenssion"])))
-    element = driver.find_element_by_xpath(data["project"]["click_set_extenssion"])
-    element.location_once_scrolled_into_view
+    
+    scroll_view(data["project"]["click_set_extenssion"])
+    #WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["project"]["click_set_extenssion"])))
+    #element = driver.find_element_by_xpath(data["project"]["click_set_extenssion"])
+    #element.location_once_scrolled_into_view
     time.sleep(1)
 
     Wait10s_ClickElement(data["project"]["click_set_extenssion"])
@@ -253,7 +252,6 @@ def project_add_extension_form(domain_name):
     Logging("5. Click button Save extension form Project successfully")
     Wait10s_ClickElement(data["project"]["btn_close_save_extension_form"])
     Logging("6. Click button Save extension form Project successfully")
-    
     time.sleep(1)
     if 'Mang Tre Viet Nam' in driver.page_source :
         Logging(Green("1.Create Set extension form => Pass"))
@@ -265,7 +263,6 @@ def project_add_extension_form(domain_name):
 
     
     Logging("=============== Delete Set extension form =============== ")
-
     Wait10s_InputElement(data["project"]["txt_search_form_name_delete"],data["project"]["form_name_extension_project"])
     time.sleep(1)
     Logging("1. Show form name Search successfully")
@@ -274,10 +271,8 @@ def project_add_extension_form(domain_name):
     time.sleep(1)
     Wait10s_ClickElement(data["project"]["btn_delete_form"])
     Logging("3. Click button Delete successfully")
-
     Wait10s_ClickElement(data["project"]["btn_ok"])
     Logging("4. Click button OK successfully")
-
     Wait10s_ClickElement(data["project"]["btn_close_save_extension_form"])
     Logging("5. Click button Close successfully")
     
