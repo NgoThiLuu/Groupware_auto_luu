@@ -11,7 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import random
 from random import randint
-
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 
@@ -78,26 +78,6 @@ for log in logs:
         ws.cell(row=1, column=7).value = "Tester"
         wb.save(log)
 
-class commond():
-    def WaitElementLoaded(time, xpath):
-        WebDriverWait(driver, time).until(EC.presence_of_element_located((By.XPATH, xpath)))
-
-    def Wait10s_ClickElement(xpath):
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
-        element = driver.find_element_by_xpath(xpath)
-        element.click()
-        return element
-
-    def Wait10s_InputElement(xpath, value):
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
-        element = driver.find_element_by_xpath(xpath)
-        element.send_keys(value)
-
-    def scroll_view(xpath):
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
-        element = driver.find_element_by_xpath(xpath)
-        element.location_once_scrolled_into_view
-        return element
 
 
 
@@ -203,6 +183,38 @@ def Red(msg):
     
 
 
+class commond():
+    def WaitElementLoaded(time, xpath):
+        WebDriverWait(driver, time).until(EC.presence_of_element_located((By.XPATH, xpath)))
+
+    def Wait10s_ClickElement(xpath):
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
+        element = driver.find_element_by_xpath(xpath)
+        element.click()
+        return element
+
+    def Wait10s_InputElement(xpath, value):
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
+        element = driver.find_element_by_xpath(xpath)
+        element.send_keys(value)
+
+    def scroll_view(xpath):
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
+        element = driver.find_element_by_xpath(xpath)
+        element.location_once_scrolled_into_view
+        return element
 
 
-    
+    def drag_drop_Element(xpath, xpath2):
+        '''• Usage: Move to view element by ActionChains
+                return WebElement'''
+
+        element = driver.find_element_by_xpath(xpath)
+        element_1 = driver.find_element_by_xpath(xpath2)
+        actions = ActionChains(driver)
+        #actions.move_to_element(element)
+        actions.drag_and_drop(element,element_1)
+        actions.perform()
+        time.sleep(1)
+
+        return element
