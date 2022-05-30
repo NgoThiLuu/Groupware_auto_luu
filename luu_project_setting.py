@@ -47,7 +47,6 @@ def project_create_folder(domain_name):
     #Logging("------------------------------------------------------C. Menu Project------------------------------------------------------")
     #driver.get(domain_name + "/project/list/2_0_0/")
     
-    
     Logging("1. Access Menu Project successfully")
     time.sleep(1)
     commond.Wait10s_ClickElement(data["project"]["manage_folder_project"])
@@ -66,15 +65,13 @@ def project_create_folder(domain_name):
     else:
         Logging("4. Add name folder =>fail")
     Logging("5. Input Folder name Project successfully" + "  : " + data["project"]["folder_name_project"])
-    click_save_folder_project = driver.find_element_by_xpath(data["project"]["button_save_folder_project"])
-    click_save_folder_project.click()
+    commond.Wait10s_ClickElement(data["project"]["button_save_folder_project"])
     time.sleep(1)
     Logging("6. Save folder Project successfully")
 
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["project"]["show_folder_create"])))
     folder_name_create_project = driver.find_element_by_xpath(data["project"]["show_folder_create"])
     if folder_name_create_project.is_displayed():
-        #Logging("Show Folder Project successfully => PASS")
         Logging(Green("Show Folder Project successfully => PASS"))
         TestCase_LogResult(**data["testcase_result"]["project"]["write_folder_project"]["pass"])
     else:
@@ -145,9 +142,7 @@ def project_add_manager(domain_name):
 
     commond.Wait10s_ClickElement(data["project"]["admin_project"])
     Logging("1. Click Admin Project successfully")
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["project"]["admin_manager"])))
-    element = driver.find_element_by_xpath(data["project"]["admin_manager"])
-    element.location_once_scrolled_into_view
+    commond.scroll_view(data["project"]["admin_manager"])
     time.sleep(1)
     commond.Wait10s_ClickElement(data["project"]["admin_manager"])
     Logging("2. Click Manager Project successfully")
@@ -182,9 +177,7 @@ def project_add_manager(domain_name):
     click_close_button_admin_manager = driver.find_element_by_xpath(data["project"]["btn_close_admin_maanger"])
     time.sleep(1)
     if click_close_button_admin_manager.is_displayed():
-        WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["project"]["btn_close_admin_maanger"])))
-        click_close_button_admin_manager = driver.find_element_by_xpath(data["project"]["btn_close_admin_maanger"])
-        click_close_button_admin_manager.click()
+        commond.Wait10s_ClickElement(data["project"]["btn_close_admin_maanger"])
         Logging(Green("Add Project Managers  => PASS"))
         time.sleep(1)
         TestCase_LogResult(**data["testcase_result"]["project"]["add_project_manager"]["pass"])
@@ -206,9 +199,6 @@ def project_add_manager(domain_name):
         ValidateFailResultAndSystem("<div>[Project]GW-121 : Project Managers </div>")
     time.sleep(1)
     '''
-
-
-
 
     Logging("=============== Delete User Managers =============== ")
     commond.Wait10s_ClickElement(data["project"]["manager_project_select_manager"])
@@ -235,9 +225,6 @@ def project_add_extension_form(domain_name):
     Logging("=============== Set extension form =============== ")
     
     commond.scroll_view(data["project"]["click_set_extenssion"])
-    #WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["project"]["click_set_extenssion"])))
-    #element = driver.find_element_by_xpath(data["project"]["click_set_extenssion"])
-    #element.location_once_scrolled_into_view
     time.sleep(1)
 
     commond.Wait10s_ClickElement(data["project"]["click_set_extenssion"])
@@ -299,10 +286,7 @@ def project_add_work_type(domain_name):
     
     Logging("===============Delete Manage Work Type =============== ")
     time.sleep(1)
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["project"]["txt_work_type"])))
-    search_work_type = driver.find_element_by_xpath(data["project"]["txt_work_type"])
-    search_work_type.send_keys(data["project"]["name_work_type"])
-    search_work_type.send_keys(Keys.RETURN)
+    commond.Wait10s_InputElement_return(data["project"]["txt_work_type"],data["project"]["name_work_type"])
     Logging("1. Show form name Search successfully")
     commond.Wait10s_ClickElement(data["project"]["check_box_work_name_search"])
     Logging("2. Click checkbox all successfully")

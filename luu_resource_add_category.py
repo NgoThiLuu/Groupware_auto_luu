@@ -66,8 +66,9 @@ def resource_add_category(domain_name):
     commond.Wait10s_ClickElement(data["resource"]["btn_save_resource_name"])
     time.sleep(1)
     Logging("A. Add Category Conference Room successfully")
-    element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar"])))
-    element.location_once_scrolled_into_view
+    commond.scroll_view(data["resource"]["pull_the_scroll_bar"])
+    #element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar"])))
+    #element.location_once_scrolled_into_view
     time.sleep(2)
     forder_hanbiro_room = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["resource"]["select_category_add"])))
     if forder_hanbiro_room.is_displayed():
@@ -90,8 +91,10 @@ def resource_add_category(domain_name):
     Logging("3. Input Category Name successfully" + " :  " + data["resource"]["input_category_name_vehicle"])
     commond.Wait10s_ClickElement(data["resource"]["btn_save_resource_name"])
     Logging("A. Add Category Vehicle successfully")
-    element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar"])))
-    element.location_once_scrolled_into_view
+
+    commond.scroll_view(data["resource"]["pull_the_scroll_bar"])
+    #element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar"])))
+    #element.location_once_scrolled_into_view
     time.sleep(2)
     forder_category_vehicle = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["resource"]["select_category_vehicle"])))
     if forder_category_vehicle.is_displayed():
@@ -113,8 +116,9 @@ def resource_add_category(domain_name):
     Logging("3. Input Category Name successfully" + " :  " + data["resource"]["input_category_name_normal"])
     commond.Wait10s_ClickElement(data["resource"]["btn_save_resource_name"])
     Logging("A. Add Category Normal successfully")
-    element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar"])))
-    element.location_once_scrolled_into_view
+    commond.scroll_view(data["resource"]["pull_the_scroll_bar"])
+    #element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar"])))
+    #element.location_once_scrolled_into_view
     time.sleep(2)
     forder_category_normal = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["resource"]["show_category_normal"])))
     if forder_category_normal.is_displayed():
@@ -200,8 +204,9 @@ def resource_add_resource_category_room(domain_name):
     Logging("--------------------- Save Add Resource Meeting Room  GW-730 : Add resource 'Meeting Room' ---------------------")
     commond.Wait10s_ClickElement(data["resource"]["click_button_save_add_resource"])
     Logging("14.Click Button Save Add Resource Meeting Room successfully")
-    element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar"])))
-    element.location_once_scrolled_into_view
+    commond.scroll_view(data["resource"]["pull_the_scroll_bar"])
+    #element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar"])))
+    #element.location_once_scrolled_into_view
     time.sleep(1)
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(2)
@@ -231,8 +236,9 @@ def resource_add_resource_category_room(domain_name):
     commond.Wait10s_ClickElement(data["resource"]["click_button_save_add_resource"])
     Logging("9.Click Button Save Add Resource  successfully")
     Logging("A. Add  Permission System Resource Meeting Room successfully")
-    element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar"])))
-    element.location_once_scrolled_into_view
+    commond.scroll_view(data["resource"]["pull_the_scroll_bar"])
+    #element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar"])))
+    #element.location_once_scrolled_into_view
     time.sleep(1)
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(2)
@@ -302,8 +308,10 @@ def resource_add_resource_category_vehicle(domain_name):
     commond.Wait10s_ClickElement(data["resource"]["click_button_save_add_resource"])
     Logging("14.Click Button Save Add Resource Meeting Room successfully")
     Logging("A. GW-731 : Add resource 'Vehicle' successfully")
-    element1 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar_vehicle"])))
-    element1.location_once_scrolled_into_view
+
+    commond.scroll_view(data["resource"]["pull_the_scroll_bar_vehicle"])
+    #element1 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar_vehicle"])))
+    #element1.location_once_scrolled_into_view
     time.sleep(1)
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(1)
@@ -333,8 +341,9 @@ def resource_add_resource_category_normal(domain_name):
     commond.Wait10s_ClickElement(data["resource"]["click_button_save_add_resource"])
     Logging("14.Click Button Save Add Resource Normal successfully")
     Logging("A. GW-732 : Add resource 'Normal' successfully")
-    element2 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar_normal"])))
-    element2.location_once_scrolled_into_view
+    commond.scroll_view(data["resource"]["pull_the_scroll_bar_normal"])
+    #element2 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar_normal"])))
+    #element2.location_once_scrolled_into_view
     time.sleep(1)
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(1)

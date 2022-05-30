@@ -100,8 +100,11 @@ def approval_write_all_form(domain_name):
     time.sleep(2)  
     commond.Wait10s_ClickElement(data["approval"]["button_save_doc_no"]) 
     time.sleep(1)
-    editor_frame = driver.find_element_by_class_name("tox-edit-area__iframe")
-    driver.switch_to.frame(editor_frame)
+    #editor_frame = driver.find_element_by_class_name("tox-edit-area__iframe")
+    #driver.switch_to.frame(editor_frame)
+    commond.SwitchToFrame(data["approval"]["input_editor"])
+
+
     content_input = driver.find_element_by_xpath("//body[@id='tinymce']")
     content_input.send_keys(data["approval"]["content_form_name"])
     driver.switch_to.default_content()
@@ -146,9 +149,8 @@ def approval_write_all_form(domain_name):
         Logging(" Search Form by Type => ---- FAIL ")
     
     Logging("----------------Delete All Form ------------------")
-    search_form_name= WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["approval"]["txt_search_approval_form"])))
-    search_form_name.send_keys(data["approval"]["search_form_delete"])
-    search_form_name.send_keys(Keys.RETURN)
+
+    commond.Wait10s_InputElement_return(data["approval"]["txt_search_approval_form"],data["approval"]["search_form_delete"])
     Logging("1. Show form name Search successfully")
     commond.Wait10s_ClickElement(data["approval"]["checkbox_all_form"])
     Logging("2. Click checkbox all Form successfully")
@@ -181,7 +183,6 @@ def approval_write_all_form(domain_name):
     Logging("----------------Check Create Form Section and Delete Form Section------------------")
 
     commond.Wait10s_ClickElement(data["approval"]["btn_more"])
-    #click_btn_more = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["approval"]["btn_more"]))).click()
     Logging("1. Click button More successfully")
     commond.Wait10s_ClickElement(data["approval"]["form_section"])
     Logging("2. Click Form Section successfully")
@@ -191,8 +192,7 @@ def approval_write_all_form(domain_name):
     time.sleep(1)
     commond.Wait10s_ClickElement(data["approval"]["form_section_select_agreement_route_check_data"])
     Logging("4. Click Agreement Route  check data successfully")
-    element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["approval"]["view_section_form_check_data"])))
-    element.location_once_scrolled_into_view
+    commond.scroll_view(data["approval"]["view_section_form_check_data"])
     Logging("5.Create Form Section successfully")
 
     commond.Wait10s_ClickElement(data["approval"]["view_section_form_check_data"])
@@ -224,10 +224,9 @@ def approval_write_all_official_form(domain_name):
         Logging("3. Input Official Forms Name =>fail")
     Logging("4. Input Input Official Forms Name successfully" + " :  " + data["approval"]["official_forms_name"] )
     time.sleep(1)
-    editor_frame = driver.find_element_by_class_name("tox-edit-area__iframe")
-    driver.switch_to.frame(editor_frame)
-    content_input = driver.find_element_by_xpath("//body[@id='tinymce']")
-    content_input.send_keys(data["approval"]["content_form_name_official_forms"])
+    commond.SwitchToFrame_no(data["approval"]["input_editor"])
+    commond.Wait10s_InputElement_return(data["approval"]["input_editor_tynmce"],data["approval"]["content_form_name_official_forms"])
+
     driver.switch_to.default_content()
     time.sleep(2)
     Logging("5. Input Content All Form successfully")
@@ -242,8 +241,7 @@ def approval_write_all_official_form(domain_name):
         ValidateFailResultAndSystem("<div>[Approval] Write All Official Forms  </div>")
         TestCase_LogResult(**data["testcase_result"]["approval"]["write_all_official_form"]["fail"])
     Logging("-------------Delete All Official Forms - Admin---------------")
-    element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["approval"]["select_official_forms_delete"])))
-    element.location_once_scrolled_into_view
+    commond.scroll_view(data["approval"]["select_official_forms_delete"])
     time.sleep(2)
     commond.Wait10s_ClickElement(data["approval"]["select_official_forms_delete"])
     Logging("1. Click checkbox Delete All Official Forms Admin successfully")
@@ -256,8 +254,7 @@ def approval_write_all_official_form(domain_name):
 def approval_view_all_approvals(domain_name):
    
     Logging("----------------- View All Approvals ------------------")
-    element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["approval"]["all_approvals"])))
-    element.location_once_scrolled_into_view
+    commond.scroll_view(data["approval"]["all_approvals"])
     time.sleep(2)
     commond.Wait10s_ClickElement(data["approval"]["all_approvals"])
     Logging("1. Click All Approvals successfully")
@@ -315,21 +312,17 @@ def approval_arbitrary_decision(domain_name):
 
     commond.Wait10s_ClickElement(data["approval"]["click_arbitrary_decision"])
     Logging("1. Click Arbitrary Decision successfully")
-    search_org_arbitrary_decision = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["approval"]["search_user_arbitrary_decision"])))
-    search_org_arbitrary_decision.send_keys(data["approval"]["search_user"])
-    search_org_arbitrary_decision.send_keys(Keys.RETURN)
+
+    commond.Wait10s_InputElement_return(data["approval"]["search_user_arbitrary_decision"],data["approval"]["search_user"])
     time.sleep(1)
     Logging("6. Search user successfully")
     commond.Wait10s_ClickElement(data["approval"]["select_user_arbitrary_decision"])
-    select_user_arbitrary_decision = WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, data["approval"]["select_user_arbitrary_decision"])))
-    select_user_arbitrary_decision.click()
     Logging("3. Select user successfully")
     time.sleep(1)
 
     commond.Wait10s_ClickElement(data["approval"]["button_click_save_arbitrary_decision"])
     Logging("3. Arbitrary Decision Settings successfully")
-    element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["approval"]["show_arbitrary_decision"])))
-    element.location_once_scrolled_into_view
+    commond.scroll_view(data["approval"]["show_arbitrary_decision"])
     time.sleep(1)
     user_arbitrary = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["approval"]["show_arbitrary_decision"])))
     if user_arbitrary.is_displayed():
@@ -391,8 +384,7 @@ def approval_default_approval_route(domain_name):
     commond.Wait10s_ClickElement(data["approval"]["select_user_default_approval_admin"])
     time.sleep(1)
     Logging("7. Select user successfully")
-    element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["approval"]["btn_save_org_app_default_admin"])))
-    element.location_once_scrolled_into_view
+    commond.scroll_view(data["approval"]["btn_save_org_app_default_admin"])
     commond.Wait10s_ClickElement(data["approval"]["btn_save_org_app_default_admin"])
     Logging("9. Save user successfully")
     commond.Wait10s_ClickElement(data["approval"]["btn_save_defaul_approval_routes"])
@@ -428,13 +420,9 @@ def approval_default_approval_route(domain_name):
         Logging("=> Add Set Official Seal=>---------- FAIL")
     Logging("------------- Delete Set Official Seal - Admin ---------------")
     commond.Wait10s_ClickElement(data["approval"]["check_data_save_set_official_seal"])
-    click_save_set_official_seal_admin = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["approval"]["btn_save_set_official_seal"])))
-    click_save_set_official_seal_admin.click()
+    commond.Wait10s_ClickElement(data["approval"]["btn_save_set_official_seal"])
+
     
-
-
-
-
 
     '''
     Logging("------------- Search Discarded Documents - Admin ---------------")
@@ -470,7 +458,6 @@ def approval_default_approval_route_setting(domain_name):
     WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["loading_dialog"])))
     Logging("2. Click Default Approval Route successfully")
     time.sleep(1)
-
     commond.Wait10s_ClickElement(data["approval"]["create_default_approval_routes"])
     WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["loading_dialog"])))
     commond.Wait10s_ClickElement(data["approval"]["create_default_approval_routes"])
@@ -488,9 +475,8 @@ def approval_default_approval_route_setting(domain_name):
 
     commond.Wait10s_ClickElement(data["approval"]["click_org_default_approval_routes"])
     Logging("5. Click Org successfully")
-    search_org_default_approval_routes = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["approval"]["search_user_approval_in_org"])))
-    search_org_default_approval_routes.send_keys(data["approval"]["user_search_org_approval"])
-    search_org_default_approval_routes.send_keys(Keys.RETURN)
+
+    commond.Wait10s_InputElement_return(data["approval"]["search_user_approval_in_org"],data["approval"]["user_search_org_approval"])
     time.sleep(2)
     Logging("6. Search user successfully")
     commond.Wait10s_ClickElement(data["approval"]["select_user_defaul_setting"])
@@ -580,8 +566,8 @@ def approval_manage_my_folder_setting(domain_name):
 def approval_display_setting(domain_name):
     
     Logging("-------------Display Settings ---------------")
-    element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["approval"]["click_display_settings"])))
-    element.location_once_scrolled_into_view
+
+    commond.scroll_view(data["approval"]["click_display_settings"])
     time.sleep(2)
     commond.Wait10s_ClickElement(data["approval"]["click_display_settings"])
     Logging("1. Click Display Settings successfully")

@@ -296,6 +296,8 @@
         "button_confirm":"//button[contains(.,'Confirm')]", 
         "icon_button_doc_no":"//button[contains(@data-ng-click, 'generalDocuNew(form.docuNo)')]",
         "button_save_doc_no":"//button[contains(@ng-click, 'ok()')]", 
+        "input_editor":"tox-edit-area__iframe", 
+        "input_editor_tynmce":"//body[@id='tinymce']",
         "click_form_name":"//input[@id='form-name']", 
         "click_button_save_all_form":"//*[@id='ngw.approval.newForm ']//button[contains(@data-ng-click,'saveForm(form)')]",
         "all_official_form":"//a[contains(text(),'All Official Forms')]",

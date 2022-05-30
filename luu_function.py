@@ -218,3 +218,32 @@ class commond():
         time.sleep(1)
 
         return element
+    
+    def Wait10s_InputElement_return(xpath, value):
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
+        element = driver.find_element_by_xpath(xpath)
+        element.send_keys(value)
+        element.send_keys(Keys.RETURN)
+
+    
+    def FindElement(xpath):
+        element = driver.find_element_by_xpath(xpath)
+
+        return element
+
+    def FindElements(xpath):
+        element = driver.find_elements_by_xpath(xpath)
+
+        return element
+
+    def SwitchToFrame(frame_xpath):
+        WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.XPATH, frame_xpath)))
+        frame = commond.FindElement(frame_xpath)
+        driver.switch_to.frame(frame)
+        return frame
+
+    def SwitchToFrame_no(frame_xpath):
+        WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.CLASS_NAME, frame_xpath)))
+        frame = driver.find_element_by_class_name(frame_xpath)
+        driver.switch_to.frame(frame)
+        
