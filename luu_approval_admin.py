@@ -69,6 +69,8 @@ def approval_write_all_form(domain_name):
     
     
     Logging("---------------- Write All Form ------------------")
+    commond.Wait10s_ClickElement(data["approval"]["admin_approval"])
+    time.sleep(1)
     commond.Wait10s_ClickElement(data["approval"]["click_all_form"])
     time.sleep(1)
     Logging("3. Click All Forms successfully")
@@ -80,8 +82,8 @@ def approval_write_all_form(domain_name):
     commond.Wait10s_ClickElement(data["approval"]["folder_approval"])
     Logging("5. Click folder approval successfully")
     commond.Wait10s_ClickElement(data["approval"]["agreement_route"])
-    click_agreement_route = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["approval"]["agreement_route"])))
-    click_agreement_route.click()
+    #click_agreement_route = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["approval"]["agreement_route"])))
+    #click_agreement_route.click()
     Logging("6. Click Agreement Route successfully")
     commond.Wait10s_ClickElement(data["approval"]["click_common"])
     Logging("7. Click Common successfully") 
@@ -96,28 +98,29 @@ def approval_write_all_form(domain_name):
         Logging("7. Add Form Name =>fail")
     Logging("8. Input Add Form Name successfully" + " :  " + data["approval"]["form_name"] )
     commond.Wait10s_ClickElement(data["approval"]["icon_button_doc_no"])
-    driver.execute_script("window.scrollTo(0, 100)")
-    time.sleep(2)  
+    time.sleep(2)
+    
     commond.Wait10s_ClickElement(data["approval"]["button_save_doc_no"]) 
     time.sleep(1)
+    driver.execute_script("window.scrollTo(0, 100)")
+    
+    time.sleep(3) 
     #editor_frame = driver.find_element_by_class_name("tox-edit-area__iframe")
     #driver.switch_to.frame(editor_frame)
-    commond.SwitchToFrame(data["approval"]["input_editor"])
-
-
-    content_input = driver.find_element_by_xpath("//body[@id='tinymce']")
-    content_input.send_keys(data["approval"]["content_form_name"])
-    driver.switch_to.default_content()
+    
+    #content_input = driver.find_element_by_xpath("//body[@id='tinymce']")
+    #content_input.send_keys(data["approval"]["content_form_name"])
+    #driver.switch_to.default_content()
     commond.Wait10s_ClickElement(data["approval"]["click_button_save_all_form"]) 
     time.sleep(2)
     Logging("9. Input Content All Form successfully")
     Logging("10. Save All Form successfully")
-    time.sleep(2)
+    time.sleep(3)
     total1=driver.find_elements_by_class_name("message-footer > .pull-left")[0].text
     total=so(total)
     total1=so(total1)    
     Logging("---  Total all form after create : ")
-    time.sleep(2)
+    time.sleep(5)
     Logging(total1)
     if total1== total +1 :
         Logging(" ***  Total All Form displayed correctly")
@@ -447,8 +450,10 @@ def approval_default_approval_route(domain_name):
 def approval_default_approval_route_setting(domain_name):
 
     Logging("------------- Default Approval Routes-Setting---------------")
-    element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["approval"]["click_sttings_approval"])))
-    element.location_once_scrolled_into_view
+
+    commond.scroll_view(data["approval"]["click_sttings_approval"])
+    #element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["approval"]["click_sttings_approval"])))
+    #element.location_once_scrolled_into_view
     time.sleep(2)
     commond.Wait10s_ClickElement(data["approval"]["click_sttings_approval"])
     WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["loading_dialog"])))
