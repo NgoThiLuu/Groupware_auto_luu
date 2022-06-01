@@ -67,8 +67,6 @@ def resource_add_category(domain_name):
     time.sleep(1)
     Logging("A. Add Category Conference Room successfully")
     commond.scroll_view(data["resource"]["pull_the_scroll_bar"])
-    #element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar"])))
-    #element.location_once_scrolled_into_view
     time.sleep(2)
     forder_hanbiro_room = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["resource"]["select_category_add"])))
     if forder_hanbiro_room.is_displayed():
@@ -86,15 +84,11 @@ def resource_add_category(domain_name):
     Logging("1.Click Icon Plus successfully")
     commond.Wait10s_ClickElement(data["resource"]["select_type_vehicle"])
     Logging("2.Select Type Category successfully")
-
     commond.Wait10s_InputElement(data["resource"]["txt_category_name"],data["resource"]["input_category_name_vehicle"])
     Logging("3. Input Category Name successfully" + " :  " + data["resource"]["input_category_name_vehicle"])
     commond.Wait10s_ClickElement(data["resource"]["btn_save_resource_name"])
     Logging("A. Add Category Vehicle successfully")
-
     commond.scroll_view(data["resource"]["pull_the_scroll_bar"])
-    #element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar"])))
-    #element.location_once_scrolled_into_view
     time.sleep(2)
     forder_category_vehicle = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["resource"]["select_category_vehicle"])))
     if forder_category_vehicle.is_displayed():
@@ -102,7 +96,6 @@ def resource_add_category(domain_name):
         TestCase_LogResult(**data["testcase_result"]["resource"]["add_category_vehicle"]["pass"])
     else:
         Logging(Red("Add Category Vehicle =>--------- FAIL"))
-        #ValidateFailResultAndSystem("<div>[Resource]Add Category Vehicle </div>")
         TestCase_LogResult(**data["testcase_result"]["resource"]["add_category_vehicle"]["fail"])
     
     Logging("--------------------- Add Category Normal   ---------------------")
@@ -117,8 +110,6 @@ def resource_add_category(domain_name):
     commond.Wait10s_ClickElement(data["resource"]["btn_save_resource_name"])
     Logging("A. Add Category Normal successfully")
     commond.scroll_view(data["resource"]["pull_the_scroll_bar"])
-    #element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar"])))
-    #element.location_once_scrolled_into_view
     time.sleep(2)
     forder_category_normal = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["resource"]["show_category_normal"])))
     if forder_category_normal.is_displayed():
@@ -126,7 +117,6 @@ def resource_add_category(domain_name):
         TestCase_LogResult(**data["testcase_result"]["resource"]["add_category_normal"]["pass"])
     else:
         Logging(Red("Add Category Normal  =>--------- FAIL"))
-        #ValidateFailResultAndSystem("<div>[Resource]Add Category Normal </div>")
         TestCase_LogResult(**data["testcase_result"]["resource"]["add_category_normal"]["fail"])
    
 
@@ -190,9 +180,7 @@ def resource_add_resource_category_room(domain_name):
     Logging("--------------------- Save Add Resource Meeting Room -GW-740 : Select user with permission to reserve   ---------------------")
     commond.Wait10s_ClickElement(data["resource"]["click_org_user_permisson"])
     Logging("11. Add Users with Permission to Reserve Conference Room successfully")
-    click_txt_search_org_user = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["txt_search_org_permisson"])))
-    click_txt_search_org_user.send_keys(data["resource"]["search_user_permission"])
-    click_txt_search_org_user.send_keys(Keys.RETURN)
+    commond.Wait10s_InputElement_return(data["resource"]["txt_search_org_permisson"],data["resource"]["search_user_permission"])
     time.sleep(1)
     commond.Wait10s_ClickElement(data["resource"]["select_user_permisson_2"])
     commond.Wait10s_ClickElement(data["resource"]["icon_add_user_per"])
@@ -200,13 +188,10 @@ def resource_add_resource_category_room(domain_name):
     Logging("12.Add User  successfully")
     commond.Wait10s_ClickElement(data["resource"]["click_button_save_per"])
     Logging("A. GW-740 : Select user with permission to reserve successfully")
-
     Logging("--------------------- Save Add Resource Meeting Room  GW-730 : Add resource 'Meeting Room' ---------------------")
     commond.Wait10s_ClickElement(data["resource"]["click_button_save_add_resource"])
     Logging("14.Click Button Save Add Resource Meeting Room successfully")
     commond.scroll_view(data["resource"]["pull_the_scroll_bar"])
-    #element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar"])))
-    #element.location_once_scrolled_into_view
     time.sleep(1)
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(2)
@@ -237,8 +222,6 @@ def resource_add_resource_category_room(domain_name):
     Logging("9.Click Button Save Add Resource  successfully")
     Logging("A. Add  Permission System Resource Meeting Room successfully")
     commond.scroll_view(data["resource"]["pull_the_scroll_bar"])
-    #element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar"])))
-    #element.location_once_scrolled_into_view
     time.sleep(1)
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(2)
@@ -270,7 +253,6 @@ def resource_add_resource_category_vehicle(domain_name):
     Logging("=>  Input VIN successfully" + " :  " + data["resource"]["input_vin_number"])
     commond.Wait10s_InputElement(data["resource"]["txt_mileage"],data["resource"]["input_mileage_number"])
     Logging("=>  Input VIN successfully" + " :  " + data["resource"]["input_mileage_number"])
-
     driver.execute_script("window.scrollTo(0, 100)")
     commond.Wait10s_ClickElement(data["resource"]["check_date_vihicle"])
     Logging("A. GW-735 : Define available time to reserve successfully")
@@ -282,10 +264,10 @@ def resource_add_resource_category_vehicle(domain_name):
         ValidateFailResultAndSystem("<div>[Resource]Define available time to reserve </div>")
 
     Logging("--------------------- Add  Reservation System Resource Vehicle  -  GW-736 : Define Reservation Type---------------------")
-    select_field_search = Select(driver.find_element_by_xpath(data["resource"]["select_reservation_type"]))
-    select_field_search.select_by_visible_text("2 hour interval, Available to Use Later")
+    commond.Selectbox_ByVisibleText(data["resource"]["select_reservation_type"],data["resource"]["select_resource_hour"])
+    #select_field_search = Select(driver.find_element_by_xpath(data["resource"]["select_reservation_type"]))
+    #select_field_search.select_by_visible_text("2 hour interval, Available to Use Later")
     Logging("A. GW-736 : Define Reservation Type successfully")
-
     time.sleep(1)
     if '2 hour interval, Available to Use Later' in driver.page_source :
         Logging(Green("1. Define Reservation Type => ------------- PASS"))
@@ -308,10 +290,7 @@ def resource_add_resource_category_vehicle(domain_name):
     commond.Wait10s_ClickElement(data["resource"]["click_button_save_add_resource"])
     Logging("14.Click Button Save Add Resource Meeting Room successfully")
     Logging("A. GW-731 : Add resource 'Vehicle' successfully")
-
     commond.scroll_view(data["resource"]["pull_the_scroll_bar_vehicle"])
-    #element1 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar_vehicle"])))
-    #element1.location_once_scrolled_into_view
     time.sleep(1)
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(1)
@@ -322,8 +301,6 @@ def resource_add_resource_category_vehicle(domain_name):
     else:
         Logging(Red("1.Add resource 'Vehicle' => --------- FAIL"))
         TestCase_LogResult(**data["testcase_result"]["resource"]["add_vehicle_system"]["fail"])
-
-
 
     
 def resource_add_resource_category_normal(domain_name):
@@ -342,8 +319,6 @@ def resource_add_resource_category_normal(domain_name):
     Logging("14.Click Button Save Add Resource Normal successfully")
     Logging("A. GW-732 : Add resource 'Normal' successfully")
     commond.scroll_view(data["resource"]["pull_the_scroll_bar_normal"])
-    #element2 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["pull_the_scroll_bar_normal"])))
-    #element2.location_once_scrolled_into_view
     time.sleep(1)
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(1)
@@ -437,17 +412,14 @@ def resource_add_resource_manager(domain_name):
         Logging("=>Show Add Resource Manager")
     else:
         Logging("=> Not show Add Resource Manager")
-        click_admin_resource = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["admin_resource"])))
-        click_admin_resource.click()
+        commond.Wait10s_ClickElement(data["resource"]["admin_resource"])
     time.sleep(1)
     commond.Wait10s_ClickElement(data["resource"]["click_add_reource_manager"])
     Logging("1.Click Folder Name successfully")
     commond.Wait10s_ClickElement(data["resource"]["icon_folder_name_resource_manager"])
     Logging("2.Click Folder Name successfully")
     time.sleep(1)
-    search_org_add_resource_manager = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["resource"]["txt_search_user_resource_manager"])))
-    search_org_add_resource_manager.send_keys(data["resource"]["user_search_org_manager"])
-    search_org_add_resource_manager.send_keys(Keys.RETURN)
+    commond.Wait10s_InputElement_return(data["resource"]["txt_search_user_resource_manager"],data["resource"]["user_search_org_manager"])
     time.sleep(1)
     Logging("3. Search user successfully")
     time.sleep(1)
@@ -460,16 +432,12 @@ def resource_add_resource_manager(domain_name):
     check_data_save_manager_list = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["resource"]["check_user_save_manager"])))
     time.sleep(1)
     if check_data_save_manager_list.is_displayed():
-        #Logging("1.Admin-Add Resource Manager=> PASS")
         Logging(Green("1.Admin-Add Resource Manager=> PASS"))
     else:
-        #Logging("1.Admin-Add Resource Manager=> FAIL")
         Logging(Red("1.Admin-Add Resource Manager=> FAIL"))
 
     Logging("--------------------- Delete-Add Resource Manager ---------------------")
-    txt_search_manager_list = driver.find_element_by_xpath(data["resource"]["txt_search_user_manager_list"])
-    txt_search_manager_list.send_keys(data["resource"]["user_search_org_manager"])
-    txt_search_manager_list.send_keys(Keys.RETURN)
+    commond.Wait10s_InputElement_return(data["resource"]["txt_search_user_manager_list"],data["resource"]["user_search_org_manager"])
     time.sleep(1)
     Logging("7. Search Title Task successfully")
     commond.Wait10s_ClickElement(data["resource"]["check_user_delete"])
@@ -480,7 +448,6 @@ def resource_add_resource_manager(domain_name):
     commond.Wait10s_ClickElement(data["resource"]["btn_ok_delete_manager_list"])
     time.sleep(1)
 
-    
 
 def access_menu_resource(domain_name):
     admin = CheckPresenceOfAdminsubmenu(domain_name)

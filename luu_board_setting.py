@@ -62,8 +62,10 @@ def board_create_folder(domain_name):
     commond.Wait10s_ClickElement(data["board"]["save_add_user"])
     Logging("7. Add user successfully")
     time.sleep(1)
-    select_permisssion = Select(driver.find_element_by_xpath(data["board"]["select_permisssion_board"])) 
-    select_permisssion.select_by_visible_text("Read/Write/Modify/Delete")
+
+    #select_permisssion = Select(driver.find_element_by_xpath(data["board"]["select_permisssion_board"])) 
+    #select_permisssion.select_by_visible_text("Read/Write/Modify/Delete")
+    commond.Selectbox_ByVisibleText(data["board"]["select_permisssion_board"],data["board"]["select_text_permission"])
     Logging("8. Select  Permissison successfully")
     time.sleep(1)
     commond.Wait10s_ClickElement(data["board"]["save_button_folder_board"])

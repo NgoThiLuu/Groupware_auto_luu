@@ -6,7 +6,7 @@ import pathlib
 from pathlib import Path
 from openpyxl import Workbook
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.ui import WebDriverWait,Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import random
@@ -246,4 +246,11 @@ class commond():
         WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.CLASS_NAME, frame_xpath)))
         frame = driver.find_element_by_class_name(frame_xpath)
         driver.switch_to.frame(frame)
+    
+    def Selectbox_ByVisibleText(xpath, selected_text):
         
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
+        #element = driver.find_element_by_xpath(xpath)
+        #Select(element).select_by_index(selected_text)
+        element = Select(driver.find_element_by_xpath(xpath))
+        element.select_by_visible_text(selected_text)

@@ -68,7 +68,6 @@ def project_create_folder(domain_name):
     commond.Wait10s_ClickElement(data["project"]["button_save_folder_project"])
     time.sleep(1)
     Logging("6. Save folder Project successfully")
-
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["project"]["show_folder_create"])))
     folder_name_create_project = driver.find_element_by_xpath(data["project"]["show_folder_create"])
     if folder_name_create_project.is_displayed():
@@ -80,8 +79,6 @@ def project_create_folder(domain_name):
         TestCase_LogResult(**data["testcase_result"]["project"]["write_folder_project"]["fail"])
 def project_create_subfolder(domain_name):
     Logging("--------------- Write Subfolder ----------------")
-
-
     commond.Wait10s_ClickElement(data["project"]["manage_folder_project"])
     commond.Wait10s_ClickElement(data["project"]["icon_list_project"])
     commond.Wait10s_ClickElement(data["project"]["select_parent_folder_project"])
@@ -97,7 +94,6 @@ def project_create_subfolder(domain_name):
     commond.Wait10s_ClickElement(data["project"]["manage_folder_project"])
     commond.Wait10s_ClickElement(data["project"]["parent_folder_project"])
     time.sleep(1)
-
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["project"]["show_folder_create"])))
     sub_folder_name_create_project = driver.find_element_by_xpath(data["project"]["show_folder_create"])
     if sub_folder_name_create_project.is_displayed():
@@ -108,14 +104,12 @@ def project_create_subfolder(domain_name):
         ValidateFailResultAndSystem("<div>[Project]2. Write Sub folder Project </div>")
         TestCase_LogResult(**data["testcase_result"]["project"]["write_subfolder_project"]["fail"])
     time.sleep(1)
-
     commond.Wait10s_ClickElement(data["project"]["select_subfolder_project_delete"])
     time.sleep(1)
     Logging("12. Select Subfolder Project successfully")
     commond.Wait10s_ClickElement(data["project"]["icon_delete_subfolder_project"])
     time.sleep(1)
     Logging("13. Click icon delete successfully")
-
     commond.Wait10s_ClickElement(data["project"]["ok_button_project"])
     Logging("14. Delete Subfolder Project successfully")
 def project_delete_folder(domain_name):
@@ -133,8 +127,6 @@ def project_delete_folder(domain_name):
     Logging("10. Delete Folder Project successfully")
     time.sleep(2)
     
-
-
 def project_add_manager(domain_name):
 
   
@@ -226,7 +218,6 @@ def project_add_extension_form(domain_name):
     
     commond.scroll_view(data["project"]["click_set_extenssion"])
     time.sleep(1)
-
     commond.Wait10s_ClickElement(data["project"]["click_set_extenssion"])
     Logging("1. Click Set extension form Project successfully")
     commond.Wait10s_ClickElement(data["project"]["icon_craete_extenssion_form"])
