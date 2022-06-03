@@ -254,3 +254,8 @@ class commond():
         #Select(element).select_by_index(selected_text)
         element = Select(driver.find_element_by_xpath(xpath))
         element.select_by_visible_text(selected_text)
+
+    def Wait10s_clearElement(xpath):
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
+        element = driver.find_element_by_xpath(xpath)
+        element.clear()

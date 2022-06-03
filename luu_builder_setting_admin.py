@@ -124,16 +124,15 @@ def admin_write_menubuilder(domain_name):
     commond.drag_drop_Element(data["menubuilder"]["multiple_choice_from_builder"],data["menubuilder"]["editor_to_drag"])
     time.sleep(1)
 
-    txt_option1_choice = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["txt_options_1"])))
-    txt_option1_choice.clear()
+    commond.Wait10s_clearElement(data["menubuilder"]["txt_options_1"])
+    #txt_option1_choice = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["txt_options_1"])))
+    #txt_option1_choice.clear()
 
     commond.Wait10s_InputElement_return(data["menubuilder"]["txt_options_1"],data["menubuilder"]["name_option1_choice"])
 
     Logging("15a.Input Option 1  successfully")
     time.sleep(1)
-    txt_option2_choice = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["txt_options_2"])))
-    txt_option2_choice.send_keys(data["menubuilder"]["name_option2_choice"])
-    txt_option2_choice.send_keys(Keys.RETURN)
+    commond.Wait10s_InputElement_return(data["menubuilder"]["txt_options_2"],data["menubuilder"]["name_option2_choice"])
     time.sleep(1)
     Logging("15b.Input Option 2  successfully")
     commond.Wait10s_InputElement_return(data["menubuilder"]["txt_options_3"],data["menubuilder"]["name_option3_choice"])
@@ -147,8 +146,9 @@ def admin_write_menubuilder(domain_name):
 
     commond.drag_drop_Element(data["menubuilder"]["single_choice_from_builder"],data["menubuilder"]["editor_to_drag_2"])
     time.sleep(1)
-    txt_option1_single_choice = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["txt_single_choice_options_1"])))
-    txt_option1_single_choice.clear()
+    commond.Wait10s_clearElement(data["menubuilder"]["txt_single_choice_options_1"])
+    #txt_option1_single_choice = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["txt_single_choice_options_1"])))
+    #txt_option1_single_choice.clear()
 
     commond.Wait10s_InputElement_return(data["menubuilder"]["txt_single_choice_options_1"],data["menubuilder"]["name_option1_single_choice"])
     Logging("16a.Input Option 1 Single Choice successfully")
@@ -225,8 +225,7 @@ def admin_write_menubuilder(domain_name):
     commond.Wait10s_ClickElement(data["menubuilder"]["btn_done_option_pick_list"])
     time.sleep(1)
     Logging("21.Drag Layout Pick List successfully")
-    element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["org_from_builder"])))
-    element.location_once_scrolled_into_view
+    commond.scroll_view(data["menubuilder"]["org_from_builder"])
     time.sleep(2)
 
     commond.drag_drop_Element(data["menubuilder"]["org_from_builder"],data["menubuilder"]["editor_to_drag_2"])
@@ -310,8 +309,7 @@ def admin_write_menubuilder(domain_name):
 
     commond.Wait10s_ClickElement(data["menubuilder"]["click_icon_clone_layout"])
     Logging("1.Click icon Clone Layout successfully")
-    input_txt_layout_name = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["txt_layout_name"])))
-    input_txt_layout_name.send_keys(data["menubuilder"]["name_clone_layout"])
+    commond.Wait10s_InputElement(data["menubuilder"]["txt_layout_name"],data["menubuilder"]["name_clone_layout"])
     Logging("2.Input Clone Layout successfully")
     time.sleep(1)
 
@@ -328,8 +326,7 @@ def admin_write_menubuilder(domain_name):
     Logging("-----------------------------Add Folder------------------------------")
     commond.Wait10s_ClickElement(data["menubuilder"]["btn_add_folder"])
     Logging("1.Click button Add Folder successfully")
-    input_txt_folder_name = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["txt_folder_name"])))
-    input_txt_folder_name.send_keys(data["menubuilder"]["folder_name"])
+    commond.Wait10s_InputElement(data["menubuilder"]["txt_folder_name"],data["menubuilder"]["folder_name"])
     Logging("2.Input Folder Name successfully")
     commond.Wait10s_ClickElement(data["menubuilder"]["btn_save_add_folder"])
     Logging("3.Click button Save successfully")
@@ -640,9 +637,7 @@ def write_layout_menubuilder(domain_name):
 
     commond.Wait10s_ClickElement(data["menubuilder"]["btn_upload"])
     time.sleep(1)
-    click_value_name = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["txt_select_name"])))
-    click_value_name.send_keys(data["menubuilder"]["name_search"])
-    click_value_name.send_keys(Keys.RETURN)
+    commond.Wait10s_InputElement_return(data["menubuilder"]["txt_select_name"],data["menubuilder"]["name_search"])
     time.sleep(2)
     Logging("2.Select Name successfully")
 
@@ -661,10 +656,7 @@ def write_layout_menubuilder(domain_name):
     Logging("6.Select Value URL successfully")
     time.sleep(1)
 
-
-    click_value_date = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["txt_value_date"])))
-    click_value_date.send_keys(data["menubuilder"]["date_search"])
-    click_value_date.send_keys(Keys.RETURN)
+    commond.Wait10s_InputElement_return(data["menubuilder"]["txt_value_date"],data["menubuilder"]["date_search"])
     Logging("7.Select Date successfully")
     time.sleep(1)
 
@@ -840,8 +832,9 @@ def write_layout_menubuilder(domain_name):
             Logging("Not show Clock In")
         '''
         Logging("2. Click button Past successfully")
-        click_textbox_name_menu_builder = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["textbox_name_builder"])))
-        click_textbox_name_menu_builder.clear()
+        commond.Wait10s_clearElement(data["menubuilder"]["textbox_name_builder"])
+        #click_textbox_name_menu_builder = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["textbox_name_builder"])))
+        #click_textbox_name_menu_builder.clear()
         click_textbox_name_menu_builder.send_keys(data["menubuilder"]["title_copy"])
         Logging("3. Input Name Menu Builder  successfully")
         commond.Wait10s_ClickElement(data["menubuilder"]["btn_save_menu_builder"])
@@ -893,17 +886,12 @@ def delete_menubuilder(domain_name):
     time.sleep(2)
     Logging("------------------------------------------------------D. Delete Menu ------------------------------------------------------")
     commond.Wait10s_ClickElement(data["menubuilder"]["screen_home_gw"])
-    #access_menu_home = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["screen_home_gw"])))
-    #access_menu_home.click()
     WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["loading_dialog"])))
     driver.get(domain_name + "/custom_menu")
     time.sleep(2)
     Logging("1. Access Menu Builder successfully")
 
     commond.Wait10s_InputElement_return(data["menubuilder"]["textbox_search_menu_builder"],data["menubuilder"]["search_menu_name_menu_builder"])
-    #click_textbox_search_menu_builder = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["textbox_search_menu_builder"])))
-    #click_textbox_search_menu_builder.send_keys(data["menubuilder"]["search_menu_name_menu_builder"])
-    #click_textbox_search_menu_builder.send_keys(Keys.RETURN)
     Logging("1. Search Menu Name successfully")
     time.sleep(1)
     try:
@@ -915,8 +903,6 @@ def delete_menubuilder(domain_name):
         commond.Wait10s_InputElement(data["menubuilder"]["txt_input_pw_delete"],data["menubuilder"]["name_pw_delete"])
         Logging("10. Input Password successfully")
         commond.Wait10s_ClickElement(data["menubuilder"]["btn_ok_delete_menubd"])
-        click_btn_ok_delete = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["btn_ok_delete_menubd"])))
-        click_btn_ok_delete.click()
         Logging("A. Delete Menu Builder successfully")
         time.sleep(3)
         if 'Total 0' in driver.page_source :
