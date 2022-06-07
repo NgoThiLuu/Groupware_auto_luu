@@ -250,8 +250,6 @@ class commond():
     def Selectbox_ByVisibleText(xpath, selected_text):
         
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
-        #element = driver.find_element_by_xpath(xpath)
-        #Select(element).select_by_index(selected_text)
         element = Select(driver.find_element_by_xpath(xpath))
         element.select_by_visible_text(selected_text)
 
@@ -259,3 +257,11 @@ class commond():
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
         element = driver.find_element_by_xpath(xpath)
         element.clear()
+    
+    def Wait10s_hold_moveElement(xpath,xpath2):
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
+        element = driver.find_element_by_xpath(xpath)
+        element_1 = driver.find_element_by_xpath(xpath2)
+        actions = ActionChains(driver)
+        actions.click_and_hold(element).move_to_element(element_1)
+        actions.perform()

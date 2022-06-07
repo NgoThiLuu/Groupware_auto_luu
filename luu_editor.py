@@ -82,8 +82,7 @@ def editor_table_task(domain_name):
     commond.Wait10s_ClickElement(data["editor"]["click_column"])
     Logging("4. Create Table In Editor successfully")
     time.sleep(1)
-    editor_frame = driver.find_element_by_class_name("tox-edit-area__iframe")
-    driver.switch_to.frame(editor_frame)
+    commond.SwitchToFrame_no(data["editor"]["input_editor"])
     count_line = int(len(driver.find_elements_by_xpath(data["editor"]["line_count"])))
     Logging("Total Row in Table:" + str(count_line))
     time.sleep(1)
@@ -128,8 +127,7 @@ def editor_table_task(domain_name):
     commond.Wait10s_ClickElement(data["editor"]["click_icon_align"])
     commond.Wait10s_ClickElement(data["editor"]["select_align_center"])
     Logging("10. Select align Center successfully")
-    editor_frame = driver.find_element_by_class_name("tox-edit-area__iframe")
-    driver.switch_to.frame(editor_frame)
+    commond.SwitchToFrame_no(data["editor"]["input_editor"])
     commond.Wait10s_InputElement(data["editor"]["content_column2_row1"],data["editor"]["name_content_column2_row1"])
     time.sleep(1)
     Logging("6. Input Content Column 2- Row 1 In Editor successfully")
@@ -141,8 +139,7 @@ def editor_table_task(domain_name):
     commond.Wait10s_ClickElement(data["editor"]["click_icon_align"])
     commond.Wait10s_ClickElement(data["editor"]["select_align_center"])
     Logging("10. Select align Center successfully")
-    editor_frame = driver.find_element_by_class_name("tox-edit-area__iframe")
-    driver.switch_to.frame(editor_frame)
+    commond.SwitchToFrame_no(data["editor"]["input_editor"])
     commond.Wait10s_InputElement(data["editor"]["content_column3_row1"],data["editor"]["name_content_column3_row1"])
     time.sleep(1)
     Logging("7. Input Content Column 3- Row 1 In Editor successfully")
@@ -161,8 +158,7 @@ def editor_table_task(domain_name):
     time.sleep(1)
     Logging("=> Upload  Image successfully")
     Logging("8. Input Content Column 3- Row 2 In Editor successfully")
-    editor_frame = driver.find_element_by_class_name("tox-edit-area__iframe")
-    driver.switch_to.frame(editor_frame)
+    commond.SwitchToFrame_no(data["editor"]["input_editor"])
     time.sleep(1)
     commond.Wait10s_ClickElement(data["editor"]["content_column4_row1"])
     driver.switch_to.default_content()
@@ -172,8 +168,7 @@ def editor_table_task(domain_name):
     Logging("10. Select align Center successfully")
     driver.switch_to.default_content()
     time.sleep(1)
-    editor_frame = driver.find_element_by_class_name("tox-edit-area__iframe")
-    driver.switch_to.frame(editor_frame)
+    commond.SwitchToFrame_no(data["editor"]["input_editor"])
     commond.Wait10s_InputElement(data["editor"]["content_column4_row1"],data["editor"]["name_content_column4_row1"])
     Logging("9. Input Content Column 4- Row 1 In Editor successfully")
     Logging("===========  Insert Link  ============ ")
@@ -193,8 +188,7 @@ def editor_table_task(domain_name):
     Logging("===========  Insert Row After  ============ ")
     driver.execute_script("window.scrollTo(0, 100)")
     time.sleep(1)
-    editor_frame = driver.find_element_by_class_name("tox-edit-area__iframe")
-    driver.switch_to.frame(editor_frame)
+    commond.SwitchToFrame_no(data["editor"]["input_editor"])
     commond.Wait10s_ClickElement(data["editor"]["content_column4_row3"])
     time.sleep(1)
     driver.switch_to.default_content()
@@ -204,8 +198,7 @@ def editor_table_task(domain_name):
     Logging("11. Click value row successfully")
     commond.Wait10s_ClickElement(data["editor"]["insert_row_after"])
     Logging("11. Click Insert Row After successfully")
-    editor_frame = driver.find_element_by_class_name("tox-edit-area__iframe")
-    driver.switch_to.frame(editor_frame)
+    commond.SwitchToFrame_no(data["editor"]["input_editor"])
     count_line_insert = int(len(driver.find_elements_by_xpath(data["editor"]["line_count"])))
     Logging("Total Insert Row After:" + str(count_line_insert))
     time.sleep(1)
@@ -223,15 +216,15 @@ def editor_table_task(domain_name):
     commond.Wait10s_ClickElement(data["editor"]["content_column1_row4"])
     time.sleep(1)
     driver.switch_to.default_content()
-    time.sleep(1)
-    editor_frame = driver.find_element_by_class_name("tox-edit-area__iframe")
-    driver.switch_to.frame(editor_frame)
+    time.sleep(2)
+    commond.SwitchToFrame_no(data["editor"]["input_editor"])
+    #editor_frame = driver.find_element_by_class_name("tox-edit-area__iframe")
+    #driver.switch_to.frame(editor_frame)
     commond.Wait10s_InputElement(data["editor"]["content_column1_row4"],data["editor"]["name_content_column1_row4"])
+
     Logging("1. Input Content Column 4- Row 1 In Editor successfully")
-    tr4_td_1 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["editor"]["content_column1_row4"])))
-    tr4_td_5 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["editor"]["content_column5_row4"])))
-    webdriver.ActionChains(driver).click_and_hold(tr4_td_1).move_to_element(tr4_td_5).perform()
-    webdriver.ActionChains(driver).release().perform()
+    commond.Wait10s_hold_moveElement(data["editor"]["content_column1_row4"],data["editor"]["content_column5_row4"])
+
     Logging("2. Highlight lines successfully")
     time.sleep(1)
     driver.switch_to.default_content()
@@ -256,19 +249,15 @@ def editor_table_task(domain_name):
     commond.Wait10s_ClickElement(data["editor"]["click_btn_save_table_properties"])
     Logging("10. Click button Save Row Properties successfully")
     Logging("===========  Merge / Split cells  ============ ")
-    editor_frame = driver.find_element_by_class_name("tox-edit-area__iframe")
-    driver.switch_to.frame(editor_frame)
+    commond.SwitchToFrame_no(data["editor"]["input_editor"])
+
     commond.Wait10s_ClickElement(data["editor"]["content_column5_row2"])
     time.sleep(1)
     driver.switch_to.default_content()
     time.sleep(1)
     Logging("1. Click  Column 5- Row 2 In Editor successfully")
-    editor_frame = driver.find_element_by_class_name("tox-edit-area__iframe")
-    driver.switch_to.frame(editor_frame)
-    tr2_td_5 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["editor"]["content_column5_row2"])))
-    tr3_td_5 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["editor"]["content_column5_row3"])))
-    webdriver.ActionChains(driver).click_and_hold(tr2_td_5).move_to_element(tr3_td_5).perform()
-    webdriver.ActionChains(driver).release().perform()
+    commond.SwitchToFrame_no(data["editor"]["input_editor"])
+    commond.Wait10s_hold_moveElement(data["editor"]["content_column5_row2"],data["editor"]["content_column5_row3"])
     Logging("2. Highlight lines successfully")
     driver.switch_to.default_content()
     time.sleep(1)
@@ -369,8 +358,7 @@ def editor_format_content(domain_name):
     commond.Wait10s_InputElement(data["editor"]["txt_name_task"],data["editor"]["title_format_editor"])
     Logging("2. Input Title Task successfully")
     time.sleep(1)
-    editor_frame = driver.find_element_by_class_name("tox-edit-area__iframe")
-    driver.switch_to.frame(editor_frame)
+    commond.SwitchToFrame_no(data["editor"]["input_editor"])
     content_input = driver.find_element_by_xpath("//body[@id='tinymce']")
     Logging("===========  Format [bold/italic/underline]  ============ ")
     driver.switch_to.default_content()
@@ -429,6 +417,7 @@ def editor_format_content(domain_name):
         Logging(Green("1. Format Color Text =>  PASS "))
     else:
         Logging(Red("2. Format Color Text => FAIL "))
+
     click_btn_cancel = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["editor"]["btn_cancel_source"]))).click()
     Logging("=> Click button cancel  => Pass")
     driver.switch_to.default_content()
@@ -662,9 +651,8 @@ def editor_upload_office_file(domain_name):
     select_file = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["editor"]["add_form_office"])))
     select_file.send_keys(luu_function.file_editor)
     time.sleep(2)
-    editor_frame = driver.find_element_by_class_name("tox-edit-area__iframe")
-    driver.switch_to.frame(editor_frame)
-    driver.find_element_by_xpath("//body[@id='tinymce']")
+    commond.SwitchToFrame_no(data["editor"]["input_editor"])
+    driver.find_element_by_xpath("//body[@id='tinymce']")   
     driver.switch_to.default_content()
     time.sleep(3)
     commond.Wait10s_ClickElement(data["editor"]["btn_save_task"])
@@ -694,8 +682,7 @@ def editor_rotate_clockwise_image(domain_name):
         Logging("2. Not show Automatically saved file found")
     commond.Wait10s_InputElement(data["editor"]["txt_name_task"],data["editor"]["title_image_rotate"])
     Logging("2. Input Title Task successfully")
-    editor_frame = driver.find_element_by_class_name("tox-edit-area__iframe")
-    driver.switch_to.frame(editor_frame)
+    commond.SwitchToFrame_no(data["editor"]["input_editor"])
     driver.find_element_by_xpath("//body[@id='tinymce']")
     driver.switch_to.default_content()
     time.sleep(1)
@@ -755,7 +742,6 @@ def editor_menu_task(domain_name):
     else:
         Logging("Can not Create Editor")
 
-
     if editor == True:
         try:
             editor_copy_paste_task(domain_name)
@@ -766,8 +752,6 @@ def editor_menu_task(domain_name):
     else:
         Logging("Can not Create Editor")
     
-    
-
     if editor == True:
         try:
             editor_format_content(domain_name)
@@ -788,7 +772,6 @@ def editor_menu_task(domain_name):
         
     else:
         Logging("Can not Create Editor")
-
     
     if editor == True:
         try:
