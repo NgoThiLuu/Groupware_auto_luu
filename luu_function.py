@@ -265,3 +265,13 @@ class commond():
         actions = ActionChains(driver)
         actions.click_and_hold(element).move_to_element(element_1)
         actions.perform()
+
+    def GetListlength(xpath):
+        
+        element = int(len(driver.find_elements_by_xpath(xpath)))
+
+
+    def RemoveDuplicate_fromList(selected_list):
+    
+        #selected_list = list(dict.fromkeys(selected_list))
+        ActionChains(driver).key_down(Keys.CONTROL).send_keys('selected_list').key_up(Keys.CONTROL).perform()

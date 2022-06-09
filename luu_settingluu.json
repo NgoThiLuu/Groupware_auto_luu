@@ -914,6 +914,8 @@
         "menu_task":"//a[contains(.,' Task')]",
         "btn_create_task":"//div[@class='page-header']//button[contains(@data-ng-click, 'goWrite()')]",
         "txt_name_task":"//input[@name='subject']",
+        "input_editor":"tox-edit-area__iframe", 
+        "input_editor_tynmce":"//body[@id='tinymce']",
         "name_task":"Editor Table Performance",
         "line_count":"//body[@id='tinymce']//table//tbody//tr",
         "content_editor_task":"Content Editor",

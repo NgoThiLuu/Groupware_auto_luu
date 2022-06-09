@@ -33,7 +33,7 @@ def CheckPresenceOfAdminsubmenu(domain_name):
     driver.get(domain_name + "/custom_menu")
     #time.sleep(2)
     #driver.refresh()
-    time.sleep(6)
+    time.sleep(8)
 
     try:
         WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["icon_create_menu"])))
@@ -176,11 +176,12 @@ def admin_write_menubuilder(domain_name):
     commond.Wait10s_ClickElement(data["menubuilder"]["btn_done_option_address"])
     time.sleep(1)
     Logging("16.Drag Layout Address successfully")
-    time.sleep(1)
+    time.sleep(3)
     commond.drag_drop_Element(data["menubuilder"]["editor_from_builder"],data["menubuilder"]["editor_to_drag_2"])
-    time.sleep(1)
+    time.sleep(2)
     commond.drag_drop_Element(data["menubuilder"]["currency_from_builder"],data["menubuilder"]["editor_to_drag"])
-    time.sleep(1)
+    time.sleep(2)
+
     select_currency_value_builder = Select(driver.find_element_by_xpath(data["menubuilder"]["list_currency_value"]))
     select_currency_value_builder.select_by_visible_text("VND (₫)")
     Logging("17a.Select Currency value successfully")
@@ -832,13 +833,12 @@ def write_layout_menubuilder(domain_name):
             Logging("Not show Clock In")
         '''
         Logging("2. Click button Past successfully")
-        commond.Wait10s_clearElement(data["menubuilder"]["textbox_name_builder"])
-        #click_textbox_name_menu_builder = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["textbox_name_builder"])))
-        #click_textbox_name_menu_builder.clear()
+        click_textbox_name_menu_builder = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["textbox_name_builder"])))
+        click_textbox_name_menu_builder.clear()
         click_textbox_name_menu_builder.send_keys(data["menubuilder"]["title_copy"])
         Logging("3. Input Name Menu Builder  successfully")
         commond.Wait10s_ClickElement(data["menubuilder"]["btn_save_menu_builder"])
-        time.sleep(4)
+        time.sleep(5)
         Logging("SAVE SAVE SAVE => ---------- PASS")
     except WebDriverException:
         Logging("Can not copy/paste")

@@ -83,8 +83,10 @@ def editor_table_task(domain_name):
     Logging("4. Create Table In Editor successfully")
     time.sleep(1)
     commond.SwitchToFrame_no(data["editor"]["input_editor"])
+
     count_line = int(len(driver.find_elements_by_xpath(data["editor"]["line_count"])))
     Logging("Total Row in Table:" + str(count_line))
+   
     time.sleep(1)
     Logging("=========== Text Color -  Border width - Border style - Text format: bold/italic/underline ============ ")
     time.sleep(1)
@@ -112,9 +114,11 @@ def editor_table_task(domain_name):
     commond.Wait10s_ClickElement(data["editor"]["click_table"])
     time.sleep(1)
     commond.Wait10s_ClickElement(data["editor"]["table_properties"])
-    txt_border_width = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["editor"]["txt_border_width_task"])))
-    txt_border_width.clear()
-    txt_border_width.send_keys(data["editor"]["number_border_width"])
+    commond.Wait10s_clearElement(data["editor"]["txt_border_width_task"])
+    #txt_border_width = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["editor"]["txt_border_width_task"])))
+    #txt_border_width.clear()
+    #txt_border_width.send_keys(data["editor"]["number_border_width"])
+    commond.Wait10s_InputElement(data["editor"]["txt_border_width_task"],data["editor"]["number_border_width"])
     Logging("6. Input Border Width In Editor successfully")
 
     commond.Wait10s_ClickElement(data["editor"]["table_properties_advanced"])
@@ -199,6 +203,7 @@ def editor_table_task(domain_name):
     commond.Wait10s_ClickElement(data["editor"]["insert_row_after"])
     Logging("11. Click Insert Row After successfully")
     commond.SwitchToFrame_no(data["editor"]["input_editor"])
+
     count_line_insert = int(len(driver.find_elements_by_xpath(data["editor"]["line_count"])))
     Logging("Total Insert Row After:" + str(count_line_insert))
     time.sleep(1)
@@ -208,8 +213,6 @@ def editor_table_task(domain_name):
     else:
         Logging(" Total Insert Row After => Fail ")
 
-    
-    #driver.switch_to.default_content()
     time.sleep(1)
 
     Logging("=========== Row Properties: Background color - Border Color - Border style ============ ")
@@ -224,7 +227,6 @@ def editor_table_task(domain_name):
 
     Logging("1. Input Content Column 4- Row 1 In Editor successfully")
     commond.Wait10s_hold_moveElement(data["editor"]["content_column1_row4"],data["editor"]["content_column5_row4"])
-
     Logging("2. Highlight lines successfully")
     time.sleep(1)
     driver.switch_to.default_content()
@@ -299,6 +301,7 @@ def editor_copy_paste_task(domain_name):
     commond.Wait10s_InputElement_return(data["editor"]["input_editor_tynmce"],data["editor"]["content_editor_copy"])
     driver.switch_to.default_content()
     time.sleep(1)
+
     ActionChains(driver).key_down(Keys.CONTROL).send_keys('a').key_up(Keys.CONTROL).perform()
     time.sleep(1)
     Logging("2. Click  Ctrl + A key successfully")
@@ -404,7 +407,6 @@ def editor_format_content(domain_name):
     Logging("5. Select Corlor => Pass")
     commond.SwitchToFrame_no(data["editor"]["input_editor"])
     commond.Wait10s_InputElement_return(data["editor"]["input_editor_tynmce"],data["editor"]["content1_format"])
-
     time.sleep(1)
     Logging("=> Click Format Color Text => Pass")
     driver.switch_to.default_content()
