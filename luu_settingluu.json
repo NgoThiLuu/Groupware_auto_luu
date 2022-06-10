@@ -582,7 +582,7 @@
         
         "icon_create_menu":"//div[@id='custom_menu']//div[@class='page-header']//button[contains(@data-ng-click, 'goWrite()')]",     
         "btn_cancel_menu":"/html/body",
-        "name_menu_builder":"//a[contains(.,'Untitled')]",
+        "name_menu_builder":"//a[@data-tut='menu_name']/span",
         "txt_name_builder":"//*[@id='slide']//form/div/input",
         "name_menu_builder_update":"QA Hanbiro",
         "click_menu_icon":"//*[starts-with(@id,'popover')]//span/i",

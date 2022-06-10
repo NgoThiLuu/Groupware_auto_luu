@@ -183,7 +183,7 @@ def Red(msg):
     
 
 
-class commond():
+class Commands():
     def WaitElementLoaded(time, xpath):
         WebDriverWait(driver, time).until(EC.presence_of_element_located((By.XPATH, xpath)))
 
@@ -238,7 +238,7 @@ class commond():
 
     def SwitchToFrame(frame_xpath):
         WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.XPATH, frame_xpath)))
-        frame = commond.FindElement(frame_xpath)
+        frame = Commands.FindElement(frame_xpath)
         driver.switch_to.frame(frame)
         return frame
 
