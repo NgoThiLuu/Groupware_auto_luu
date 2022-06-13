@@ -21,7 +21,7 @@ import pathlib
 from pathlib import Path
 import os
 from sys import platform
-import luu_log_in,luu_board_setting,luu_project_setting,luu_contact_setting,luu_approval_admin,luu_resource_add_category,luu_builder_setting_admin,luu_editor
+import luu_log_in,board_setting,project_setting,contact_setting,approval_admin,resource_add_category,builder_setting_admin,editor
 from luu_function import execution_log, fail_log, error_log, Logging,testcase_log
 
 
@@ -42,54 +42,54 @@ def Luu_Execution(domain_name):
     
 
     try:
-        luu_board_setting.access_menu_board(domain_name)
+        board_setting.access_menu_board(domain_name)
     except:
         Logging("Cannot continue execution")
-        error_menu.append("luu_board_setting.access_menu_board")
+        error_menu.append("board_setting.access_menu_board")
     
     try:
-        luu_project_setting.access_menu_project(domain_name)
+        project_setting.access_menu_project(domain_name)
     except:
         Logging("Cannot continue execution")
-        error_menu.append("luu_project_setting.access_menu_project")
+        error_menu.append("project_setting.access_menu_project")
     
     try:
-        luu_contact_setting.access_menu_contact(domain_name)
+        contact_setting.access_menu_contact(domain_name)
     except:
         Logging("Cannot continue execution")
-        error_menu.append("luu_contact_setting.access_menu_contact")
+        error_menu.append("contact_setting.access_menu_contact")
     
     try:
-        luu_approval_admin.access_menu_approval(domain_name)
+        approval_admin.access_menu_approval(domain_name)
     except:
         Logging("Cannot continue execution")
-        error_menu.append("luu_approval_admin.access_menu_approval")
+        error_menu.append("approval_admin.access_menu_approval")
     
     try:
-        luu_resource_add_category.access_menu_resource(domain_name)
+        resource_add_category.access_menu_resource(domain_name)
     except:
         Logging("Cannot continue execution")
-        error_menu.append("luu_resource_add_category.access_menu_resource")
+        error_menu.append("resource_add_category.access_menu_resource")
     
     try:
-        luu_builder_setting_admin.admin_menu_menubuilder(domain_name)
+        builder_setting_admin.admin_menu_menubuilder(domain_name)
     except:
         Logging("Cannot continue execution")
-        error_menu.append("luu_builder_setting_admin.admin_menu_menubuilder")
+        error_menu.append("builder_setting_admin.admin_menu_menubuilder")
 
     try:
-        luu_builder_setting_admin.write_menu_menubuilder(domain_name)
+        builder_setting_admin.write_menu_menubuilder(domain_name)
     except:
         Logging("Cannot continue execution")
-        error_menu.append("luu_builder_setting_admin.write_menu_menubuilder")
+        error_menu.append("builder_setting_admin.write_menu_menubuilder")
     
     
 
     try:
-        luu_editor.editor_menu_task(domain_name)
+        editor.editor_menu_task(domain_name)
     except:
         Logging("Cannot continue execution")
-        error_menu.append("luu_editor.editor_menu_task")
+        error_menu.append("editor.editor_menu_task")
     
     luu_log = {
         "execution_log": execution_log,
@@ -103,14 +103,14 @@ def Luu_Execution(domain_name):
 def Luu_My_Execution(domain_name):
     
     luu_log_in.log_in_domain(domain_name)
-    luu_board_setting.access_menu_board(domain_name)
-    #luu_project_setting.access_menu_project(domain_name)
-    #luu_contact_setting.access_menu_contact(domain_name)
-    #luu_approval_admin.access_menu_approval(domain_name)
-    #luu_resource_add_category.access_menu_resource(domain_name)
-    #luu_builder_setting_admin.admin_menu_menubuilder(domain_name)
-    #luu_builder_setting_admin.write_menu_menubuilder(domain_name)
-    #luu_editor.editor_menu_task(domain_name)
+    board_setting.access_menu_board(domain_name)
+    #project_setting.access_menu_project(domain_name)
+    #contact_setting.access_menu_contact(domain_name)
+    #approval_admin.access_menu_approval(domain_name)
+    #resource_add_category.access_menu_resource(domain_name)
+    #builder_setting_admin.admin_menu_menubuilder(domain_name)
+    #builder_setting_admin.write_menu_menubuilder(domain_name)
+    #editor.editor_menu_task(domain_name)
 
 
     luu_log = {
@@ -122,5 +122,5 @@ def Luu_My_Execution(domain_name):
     return luu_log
     
 
-Luu_My_Execution("http://qavn.hanbiro.net/ngw/app/#")
+Luu_My_Execution("http://groupware57.hanbiro.net/ngw/app/#")
 

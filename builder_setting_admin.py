@@ -59,7 +59,7 @@ def admin_write_menubuilder(domain_name):
     except WebDriverException:
         Logging("Not show Clock In")
 
-    time.sleep(2)
+    time.sleep(1)
 
     Commands.Wait10s_ClickElement(data["menubuilder"]["icon_create_menu"])
     Logging("1.Click button Create  successfully")
@@ -70,9 +70,6 @@ def admin_write_menubuilder(domain_name):
     Commands.SwitchToFrame("//div[contains(@class, 'popup-formbuilder')]/div/iframe")
     time.sleep(2)
     Commands.Wait10s_ClickElement(data["menubuilder"]["name_menu_builder"])
-
-    #click_txtname_builder = driver.find_element_by_xpath(data["menubuilder"]["name_menu_builder"])
-    #click_txtname_builder.click()
 
     time.sleep(2)
     txtname_clear_builder = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["txt_name_builder"])))
