@@ -51,6 +51,11 @@ def contact_create_folder(domain_name):
     time.sleep(2)
     Logging("2. Click list My Company successfully")  
     Commands.Wait10s_ClickElement(data["contact"]["folder_my_contacts"])  
+
+
+
+
+    '''
     Logging("4. Click folder in My Contacts successfully")
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["textbox_folder_name"])))
     folder_name = driver.find_element_by_xpath(data["contact"]["textbox_folder_name"])
@@ -61,6 +66,17 @@ def contact_create_folder(domain_name):
     else:
         Logging("6. Add name folder =>fail")
     Logging("5. Input folder Name successfully" + " :  " + data["contact"]["folder_title"] )
+    '''
+
+
+
+    now = datetime.now()
+    name_folder_contact = "Generated sele" +" " + now.strftime("%Y")
+    input_description_contact = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["contact"]["textbox_folder_name"])))
+    input_description_contact.send_keys(name_folder_contact)
+    time.sleep(2)
+
+
 
     Commands.Wait10s_InputElement(data["contact"]["textbox_description"],data["contact"]["title_description"])
     Logging("6. Input Description successfully" + " :  " +  data["contact"]["title_description"] )
@@ -105,13 +121,14 @@ def contact_create_folder(domain_name):
     forder_contact_create =  driver.find_element_by_xpath(data["contact"]["show_folder_contact"])
     time.sleep(2)
     if forder_contact_create.is_displayed():
-        Logging(Green("Show Folder Board successfully => PASS"))
+        Logging(Green("Show Folder Contact successfully => PASS"))
         TestCase_LogResult(**data["testcase_result"]["contact"]["write_folder_contact"]["pass"])
     else:
-        Logging(Red("Show Folder Board Fail => FAIL"))
-        ValidateFailResultAndSystem("<div>[Contact]Show Folder Board successfully </div>")
+        Logging(Red("Show Folder Contact Fail => FAIL"))
+        ValidateFailResultAndSystem("<div>[Contact]Show Folder Contact successfully </div>")
         TestCase_LogResult(**data["testcase_result"]["contact"]["write_folder_contact"]["fail"])
-    
+
+   
 def contact_create_subfolder(domain_name):    
     Logging("---------------- Write SubFolder My Contact----------------")
     Commands.Wait10s_ClickElement(data["contact"]["click_list_my_contact"])
@@ -182,8 +199,8 @@ def contact_edit_folder(domain_name):
 def contact_delete_folder(domain_name):    
     Logging("---------------- Delete  Folder Parent---------------")
     driver.execute_script("window.scrollTo(100, 0)")
-    time.sleep(2)
-    Commands.Wait10s_ClickElement(data["contact"]["click_folder_contact_edit"])
+    time.sleep(3)
+    Commands.Wait10s_ClickElement(data["contact"]["check_folder_parent_contact"])
     time.sleep(1)
     Commands.Wait10s_ClickElement(data["contact"]["click_icon_delete_subfolder_contact"])
     time.sleep(1)
