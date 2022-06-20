@@ -169,7 +169,7 @@ def resource_add_resource_category_room(domain_name):
     time.sleep(1)
     Logging("A. GW-739 : Upload resource image successfully")
     time.sleep(2)
-    if 'Hoa hong 4' in driver.page_source :
+    if 'signature_mage' in driver.page_source :
         Logging(Green("1.Upload resource image=> ---------- PASS"))
         TestCase_LogResult(**data["testcase_result"]["resource"]["upload_resource_image"]["pass"])
 
@@ -224,7 +224,7 @@ def resource_add_resource_category_room(domain_name):
     Commands.scroll_view(data["resource"]["pull_the_scroll_bar"])
     time.sleep(1)
     driver.execute_script("window.scrollTo(100, 0)")
-    time.sleep(2)
+    time.sleep(3)
     Commands.Wait10s_ClickElement(data["resource"]["select_category_add"])
     if 'Room Permission System' in driver.page_source :
         Logging(Green("1.Add resource 'Meeting Room Permission System' => --------- PASS"))

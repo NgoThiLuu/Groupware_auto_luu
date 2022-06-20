@@ -37,15 +37,13 @@ if platform == "linux" or platform == "linux2":
         data = json.load(json_data_file)
     driver = webdriver.Chrome("/usr/bin/chromedriver")
     file_buildr = local+"/Attachment/form_data_builder.xls"
-    file_img = local+"/Attachment/Hoa hong 4.jpg"
+    file_img = local+"/Attachment/signature_mage.jpg"
     file_editor = local+"/Attachment/upload_office file_editor.xls"
     local = "/home/oem/groupware-auto-test"
     log_folder = "/Log/"
     execution_log = local + log_folder + "execution_log_" + str(objects.date_id) + ".txt"
-    fail_log = execution_log.replace("execution_log_", "fail_log_")
-    error_log = execution_log.replace("execution_log_", "error_log_") 
-    #import common_functions
-    #driver = common_functions.driver
+    #fail_log = execution_log.replace("execution_log_", "fail_log_")
+    #error_log = execution_log.replace("execution_log_", "error_log_") 
 else :
     local = "D:\File_Du_Lieu\Automation Test\luungo_automationtest"
     json_file = local + "\\luu_settingluu.json"
@@ -54,15 +52,15 @@ else :
     driver = webdriver.Chrome(local + "\\chromedriver.exe")
     log_folder = "\\Log\\"
     execution_log = local + log_folder + "execution_log_" + str(objects.date_id) + ".txt"
-    fail_log = execution_log.replace("execution_log_", "fail_log_")
-    error_log = execution_log.replace("execution_log_", "error_log_")
+    #fail_log = execution_log.replace("execution_log_", "fail_log_")
+    #error_log = execution_log.replace("execution_log_", "error_log_")
     file_buildr=local+"\\attachment\\form_data_builder.xls"
-    file_img= local+"\\attachment\\Hoa hong 4.jpg"
+    file_img= local+"\\attachment\\signature_mage.jpg"
     file_editor=local+"\\attachment\\upload_office file_editor.xls"
 
 testcase_log = local + log_folder + "testcase_luu_ngo_gw_" + str(objects.date_id) + ".xlsx"   
-
-logs = [execution_log,fail_log,error_log,testcase_log]
+logs = [execution_log,testcase_log]
+#logs = [execution_log,fail_log,error_log,testcase_log]
 for log in logs: 
     if".txt" in log:
         open(log,"x").close()
@@ -102,7 +100,8 @@ def Logging(msg):
 
 def ValidateFailResultAndSystem(fail_msg):
     print(fail_msg)
-    append_fail_result = open(fail_log, "a")
+    #append_fail_result = open(fail_log, "a")
+    append_fail_result = open("a")
     append_fail_result.write("[FAILED TEST CASE] " + str(fail_msg) + "\n")
     append_fail_result.close()
 

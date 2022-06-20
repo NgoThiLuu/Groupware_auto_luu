@@ -54,22 +54,6 @@ def contact_create_folder(domain_name):
 
 
 
-
-    '''
-    Logging("4. Click folder in My Contacts successfully")
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["textbox_folder_name"])))
-    folder_name = driver.find_element_by_xpath(data["contact"]["textbox_folder_name"])
-    folder_name.send_keys(data["contact"]["folder_title"]) 
-    content_subject=folder_name.get_attribute("value")
-    if(content_subject==data["contact"]["folder_title"]):
-        Logging("6. Add name folder =>pass")
-    else:
-        Logging("6. Add name folder =>fail")
-    Logging("5. Input folder Name successfully" + " :  " + data["contact"]["folder_title"] )
-    '''
-
-
-
     now = datetime.now()
     name_folder_contact = "Generated sele" +" " + now.strftime("%Y")
     input_description_contact = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["contact"]["textbox_folder_name"])))
@@ -228,6 +212,10 @@ def contact_manager_folder(domain_name):
     Logging("1. Click  Manage Company Folders successfully")
     Commands.Wait10s_ClickElement(data["contact"]["folder_public_contact"])
     Logging("2. Click  Public Contact successfully")
+
+
+
+    '''
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["textbox_folder_name"])))
     folder_name_manage_company = driver.find_element_by_xpath(data["contact"]["textbox_folder_name"])
     folder_name_manage_company.send_keys(data["contact"]["title_folder_manager_company"]) 
@@ -238,6 +226,19 @@ def contact_manager_folder(domain_name):
         Logging("6. Add name folder =>fail")
     Logging("5. Input folder Name successfully" + " :  " + data["contact"]["title_folder_manager_company"] )
     time.sleep(2)
+    '''
+
+    now = datetime.now()
+    name_folder_contact_company = "Generated sele" +" " + now.strftime("%Y")
+    input_description_contact = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["contact"]["textbox_folder_name"])))
+    input_description_contact.send_keys(name_folder_contact_company)
+    time.sleep(2)
+
+
+
+
+
+
     Logging("----------------------------------- Share Folder -----------------------------------")
 
     Commands.Wait10s_ClickElement(data["contact"]["check_radio_share"])
@@ -269,6 +270,9 @@ def contact_manager_folder(domain_name):
     time.sleep(1)
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["pull_the_scroll_bar_view"])))
     follder_manager_company = driver.find_element_by_xpath(data["contact"]["pull_the_scroll_bar_view"])
+
+
+
     if follder_manager_company.is_displayed():
         Logging(Green("Create Manage Company Folders => PASS"))
         TestCase_LogResult(**data["testcase_result"]["contact"]["manager_company_contact"]["pass"])
@@ -276,13 +280,15 @@ def contact_manager_folder(domain_name):
         Logging(Red("Create Manage Company Folders => FAIL"))
         TestCase_LogResult(**data["testcase_result"]["contact"]["manager_company_contact"]["fail"])
     time.sleep(1)    
+
+
 def contact_manager_edit_folder(domain_name):
     Logging("----------------------------------- Edit Folder -----------------------------------")
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(1)
     Commands.Wait10s_ClickElement(data["contact"]["pull_the_scroll_bar_view"])
     time.sleep(1)
-    Commands.Wait10s_InputElement(data["contact"]["txt_about_folder"],data["contact"]["txt_about_folder"])
+    Commands.Wait10s_InputElement(data["contact"]["txt_about_folder"],data["contact"]["content_about_folder"])
     Logging("1. Input Content successfully")
     Commands.Wait10s_ClickElement(data["contact"]["btn_save_manager_folder"])
     time.sleep(1)

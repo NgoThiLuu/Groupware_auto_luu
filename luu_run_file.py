@@ -22,8 +22,8 @@ from pathlib import Path
 import os
 from sys import platform
 import luu_log_in,board_setting,project_setting,contact_setting,approval_admin,resource_add_category,builder_setting_admin,editor
-from luu_function import execution_log, fail_log, error_log, Logging,testcase_log
-
+#from luu_function import execution_log, fail_log, error_log, Logging,testcase_log
+from luu_function import execution_log,Logging,testcase_log
 
 
 
@@ -93,8 +93,8 @@ def Luu_Execution(domain_name):
     
     luu_log = {
         "execution_log": execution_log,
-        "fail_log": fail_log,
-        "error_log": error_log,
+        #"fail_log": fail_log,
+        #"error_log": error_log,
         "error_menu": error_menu
     }
 
@@ -104,19 +104,19 @@ def Luu_My_Execution(domain_name):
     
     luu_log_in.log_in_domain(domain_name)
     board_setting.access_menu_board(domain_name)
-    #project_setting.access_menu_project(domain_name)
-    #contact_setting.access_menu_contact(domain_name)
-    #approval_admin.access_menu_approval(domain_name)
-    #resource_add_category.access_menu_resource(domain_name)
-    #builder_setting_admin.admin_menu_menubuilder(domain_name)
-    #builder_setting_admin.write_menu_menubuilder(domain_name)
-    #editor.editor_menu_task(domain_name)
+    project_setting.access_menu_project(domain_name)
+    contact_setting.access_menu_contact(domain_name)
+    approval_admin.access_menu_approval(domain_name)
+    resource_add_category.access_menu_resource(domain_name)
+    builder_setting_admin.admin_menu_menubuilder(domain_name)
+    builder_setting_admin.write_menu_menubuilder(domain_name)
+    editor.editor_menu_task(domain_name)
 
 
     luu_log = {
         "execution_log": execution_log,
-        "fail_log": fail_log,
-        "error_log": error_log
+        #"fail_log": fail_log,
+        #"error_log": error_log
     }
 
     return luu_log
