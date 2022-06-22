@@ -45,7 +45,7 @@ if platform == "linux" or platform == "linux2":
     #fail_log = execution_log.replace("execution_log_", "fail_log_")
     #error_log = execution_log.replace("execution_log_", "error_log_") 
 else :
-    local = "D:\File_Du_Lieu\Automation Test\luungo_automationtest"
+    local = os.path.dirname(Path(__file__).absolute())
     json_file = local + "\\luu_settingluu.json"
     with open(json_file) as json_data_file:
         data = json.load(json_data_file)
@@ -101,9 +101,9 @@ def Logging(msg):
 def ValidateFailResultAndSystem(fail_msg):
     print(fail_msg)
     #append_fail_result = open(fail_log, "a")
-    append_fail_result = open("a")
-    append_fail_result.write("[FAILED TEST CASE] " + str(fail_msg) + "\n")
-    append_fail_result.close()
+    #append_fail_result = open("a")
+    #append_fail_result.write("[FAILED TEST CASE] " + str(fail_msg) + "\n")
+    #append_fail_result.close()
 
 
 def TestCase_LogResult(menu, sub_menu, testcase, status, description, tester):

@@ -54,14 +54,15 @@ def admin_write_menubuilder(domain_name):
     Logging("--------------------- Write Menu   ---------------------")
 
     try:
-        click_btn_close_clock_in = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["menubuilder"]["btn_close_clock_in"])))
-        click_btn_close_clock_in.click()
+        Commands.Wait10s_ClickElement(data["menubuilder"]["icon_create_menu"])
     except WebDriverException:
         Logging("Not show Clock In")
+        Commands.ClickElement(data["menubuilder"]["btn_close_clock_in"])
+        Commands.Wait10s_ClickElement(data["menubuilder"]["icon_create_menu"])
 
     time.sleep(1)
 
-    Commands.Wait10s_ClickElement(data["menubuilder"]["icon_create_menu"])
+    
     Logging("1.Click button Create  successfully")
     time.sleep(8)
     Commands.Wait10s_ClickElement(data["menubuilder"]["btn_cancel_menu"])
@@ -513,12 +514,20 @@ def write_layout_menubuilder(domain_name):
     else:
         Logging(Red("1.Acess Menu => ----------- FAIL"))
     Logging("--------------------- Create Layout  ---------------------")
+
+
+
     try:
-        Commands.Wait10s_ClickElement(data["menubuilder"]["btn_close_clock_in"])
+        Commands.Wait10s_ClickElement(data["menubuilder"]["select_sub_2"])
+        #Commands.Wait10s_ClickElement(data["menubuilder"]["btn_close_clock_in"])
     except WebDriverException:
         Logging("Not show Clock In")
+        Commands.Wait10s_ClickElement(data["menubuilder"]["btn_close_clock_in"])
+        Commands.Wait10s_ClickElement(data["menubuilder"]["select_sub_2"])
+
+
     time.sleep(1)
-    Commands.Wait10s_ClickElement(data["menubuilder"]["select_sub_2"])
+    #Commands.Wait10s_ClickElement(data["menubuilder"]["select_sub_2"])
     Commands.Wait10s_ClickElement(data["menubuilder"]["button_create_title"])
     Logging("1. Click Create successfully")
     
@@ -773,11 +782,11 @@ def write_layout_menubuilder(domain_name):
       
     Logging("--------------------- Mark as Read  ---------------------")
     Commands.Wait10s_ClickElement(data["menubuilder"]["btn_mark_as_read"])
-    time.sleep(1)
+    time.sleep(2)
     Logging("1.Click icon Mark as Read  successfully")
     WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["loading_dialog"])))
     Logging("A. Mark as Read successfully")
-    time.sleep(5)
+    time.sleep(6)
     if 'Total 2' in driver.page_source :
         Logging("Mark as Read =>----- PASS")
         TestCase_LogResult(**data["testcase_result"]["menubuilder"]["mark_as_read"]["pass"])
@@ -823,12 +832,17 @@ def write_layout_menubuilder(domain_name):
         time.sleep(1)
         
         try:
-            Commands.Wait10s_ClickElement(data["menubuilder"]["btn_close_clock_in"])
+            Commands.Wait10s_ClickElement(data["menubuilder"]["button_create_title"])
+            #Commands.Wait10s_ClickElement(data["menubuilder"]["btn_close_clock_in"])
         except WebDriverException:
             Logging("Not show Clock In")
+            Commands.Wait10s_ClickElement(data["menubuilder"]["btn_close_clock_in"])
+            Commands.Wait10s_ClickElement(data["menubuilder"]["button_create_title"])
+
+
 
         time.sleep(1)
-        Commands.Wait10s_ClickElement(data["menubuilder"]["button_create_title"])
+        #Commands.Wait10s_ClickElement(data["menubuilder"]["button_create_title"])
         Logging("1. Click Create successfully")
         time.sleep(1)
         Commands.Wait10s_ClickElement(data["menubuilder"]["btn_paste_copy_data"])
@@ -868,11 +882,15 @@ def write_layout_menubuilder(domain_name):
     driver.refresh()
     time.sleep(8)
     try:
-        Commands.Wait10s_ClickElement(data["menubuilder"]["btn_close_clock_in"])
+        Commands.Wait10s_ClickElement(data["menubuilder"]["btn_more_copy"])
+        #Commands.Wait10s_ClickElement(data["menubuilder"]["btn_close_clock_in"])
     except WebDriverException:
         Logging("Not show Clock In")
+        Commands.Wait10s_ClickElement(data["menubuilder"]["btn_close_clock_in"])
+        Commands.Wait10s_ClickElement(data["menubuilder"]["btn_more_copy"])
+
    
-    Commands.Wait10s_ClickElement(data["menubuilder"]["btn_more_copy"])
+    #Commands.Wait10s_ClickElement(data["menubuilder"]["btn_more_copy"])
     time.sleep(2)
     Commands.Wait10s_ClickElement(data["menubuilder"]["btn_back_builder"])
     time.sleep(2)
@@ -914,7 +932,7 @@ def delete_menubuilder(domain_name):
         Logging("10. Input Password successfully")
         Commands.Wait10s_ClickElement(data["menubuilder"]["btn_ok_delete_menubd"])
         Logging("A. Delete Menu Builder successfully")
-        time.sleep(3)
+        time.sleep(6)
         if 'Total 0' in driver.page_source :
             Logging(Green("DELETE MENU => ------ PASS"))
             TestCase_LogResult(**data["testcase_result"]["menubuilder"]["delete_menu"]["pass"])
