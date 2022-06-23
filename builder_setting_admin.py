@@ -1,3 +1,4 @@
+from importlib.resources import path
 import time, json, random
 import logging
 from selenium import webdriver
@@ -389,6 +390,8 @@ def admin_write_menubuilder(domain_name):
         Logging(Red("Export Layout fail =>------- FAIL"))
         ValidateFailResultAndSystem("<div>[Menu Builder]Export Layout fail</div>")
         TestCase_LogResult(**data["testcase_result"]["menubuilder"]["export_layout"]["fail"])
+    
+ 
 
     Logging("-----------------------------Mode View------------------------------")
     driver.refresh()
@@ -500,14 +503,14 @@ def write_layout_menubuilder(domain_name):
     WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["loading_dialog"])))
     time.sleep(2)
     driver.get(domain_name + "/custom_menu/list/")
-    time.sleep(2)
+    time.sleep(4)
     Logging("1. Access Menu Builder successfully")
     Logging("-------------- Search Menu Name ------------------")
     Commands.Wait10s_InputElement_return(data["menubuilder"]["textbox_search_menu_builder"],data["menubuilder"]["search_menu_name_menu_builder"])
     Logging("1. Search Menu Name successfully")
-    time.sleep(1)
+    time.sleep(6)
     Commands.Wait10s_ClickElement(data["menubuilder"]["select_menu_luuluu"])
-    time.sleep(1)
+    time.sleep(5)
     Logging("2. Click menu QA Hanbiro successfully")
     if 'Sub QA' in driver.page_source :
         Logging(Green("1.Acess Menu => ----------- PASS"))
@@ -945,11 +948,16 @@ def delete_menubuilder(domain_name):
     access_menu_home.click()
     
    
-    
-    jpg = glob.glob(os.path.join("Downloads\\*.jpg"))
+
+  
+
+
+    '''
+    jpg = glob.glob(os.path.join("Downloads\\signature_mage.jpg"))
     for image in jpg:
         os.remove(image)
-    json = glob.glob(os.path.join("Downloads\\*.json"))
+    
+    json = glob.glob(os.path.join("Downloads\\Sub QA 2.json"))
     for item in json:
         os.remove(item)
     files = glob.glob(os.path.join("Downloads\\*.xls"))
@@ -959,6 +967,9 @@ def delete_menubuilder(domain_name):
     for zipbd in filezip:
         os.remove(zipbd)
     
+    '''
+
+
     
 def admin_menu_menubuilder(domain_name):
     admin = CheckPresenceOfAdminsubmenu(domain_name)

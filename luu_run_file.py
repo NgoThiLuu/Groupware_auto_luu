@@ -103,14 +103,14 @@ def Luu_Execution(domain_name):
 def Luu_My_Execution(domain_name):
     
     luu_log_in.log_in_domain(domain_name)
-    board_setting.access_menu_board(domain_name)
-    project_setting.access_menu_project(domain_name)
-    contact_setting.access_menu_contact(domain_name)
-    approval_admin.access_menu_approval(domain_name)
-    resource_add_category.access_menu_resource(domain_name)
+    #board_setting.access_menu_board(domain_name)
+    #project_setting.access_menu_project(domain_name)
+    #contact_setting.access_menu_contact(domain_name)
+    #approval_admin.access_menu_approval(domain_name)
+    #resource_add_category.access_menu_resource(domain_name)
     builder_setting_admin.admin_menu_menubuilder(domain_name)
     builder_setting_admin.write_menu_menubuilder(domain_name)
-    editor.editor_menu_task(domain_name)
+    #editor.editor_menu_task(domain_name)
 
 
     luu_log = {
@@ -122,5 +122,5 @@ def Luu_My_Execution(domain_name):
     return luu_log
     
 
-Luu_My_Execution("http://groupware57.hanbiro.net/ngw/app/#")
+Luu_My_Execution("http://qavn.hanbiro.net/ngw/app/#")
 

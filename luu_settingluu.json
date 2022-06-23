@@ -18,7 +18,7 @@
         "hide_list_contact":"//*[starts-with(@id, 'mCSB') and contains(@id, 'container')]//li[contains(@data-category,'org')]//span[contains(.,'My Company')]/following-sibling::b",
         "folder_my_contacts":"//a[contains(text(),'My Contacts')]",
         "textbox_folder_name":"//div[@class='widget-main']//input[contains(@type,'text')]",
-        "folder_title":"Luu Ngo" ,
+        "folder_title":"Test Folder" ,
         "textbox_description":"//textarea[@name='folder_ment']",
         "title_description":"Luu Ngo Test",
         "turn_on_share":"//div[@id='ngw.addrbook.setting']//label/input[contains(@name,'is_share')]/following-sibling::span",
