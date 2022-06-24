@@ -51,7 +51,7 @@
         "save_folder_contact_edit":"//button[contains(@data-ng-click, 'saveFolder(form)')]",
         "show_folder_contact":"//a[contains(text(),'Test Folder')]",
         "show_sub_folder":"//a[contains(text(),'sub 2')]",
-        "admin_contact":"//span[contains(.,'Admin')]",
+        "admin_contact":"//div[starts-with(@id, 'mCSB') and contains(@id, 'container')]//a[contains(@data-ng-click, 'showAdminSetting($event)')]//span[contains(.,'Admin')]",
         "click_manager_company_folder":"//span[contains(.,'Manage Company Folders')]",
         "folder_public_contact":"//div[@class='my_folder_tree ui-draggable-handle']//a[contains(text(),'Public Contacts')]",
         "title_folder_manager_company":"Hoa Lan",

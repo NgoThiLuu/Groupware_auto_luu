@@ -53,14 +53,7 @@ def contact_create_folder(domain_name):
     Commands.Wait10s_ClickElement(data["contact"]["folder_my_contacts"])  
 
     Commands.Wait10s_InputElement(data["contact"]["textbox_folder_name"],data["contact"]["folder_title"])
-
-    #now = datetime.now()
-    #name_folder_contact = "Generated sele" +" " + now.strftime("%Y")
-    #input_description_contact = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["contact"]["textbox_folder_name"])))
-    #input_description_contact.send_keys(name_folder_contact)
     time.sleep(2)
-
-
 
     Commands.Wait10s_InputElement(data["contact"]["textbox_description"],data["contact"]["title_description"])
     Logging("6. Input Description successfully" + " :  " +  data["contact"]["title_description"] )
@@ -185,9 +178,9 @@ def contact_delete_folder(domain_name):
     driver.execute_script("window.scrollTo(100, 0)")
     time.sleep(3)
     Commands.Wait10s_ClickElement(data["contact"]["check_folder_parent_contact"])
-    time.sleep(1)
+    time.sleep(2)
     Commands.Wait10s_ClickElement(data["contact"]["click_icon_delete_subfolder_contact"])
-    time.sleep(1)
+    time.sleep(2)
     Commands.Wait10s_ClickElement(data["contact"]["click_ok_button"])
     time.sleep(2)
     Commands.Wait10s_ClickElement(data["contact"]["click_button_close_contact"])
@@ -235,16 +228,7 @@ def contact_manager_folder(domain_name):
     '''
 
     Commands.Wait10s_InputElement(data["contact"]["textbox_folder_name"],data["contact"]["folder_title"])
-
-
-    #now = datetime.now()
-    #name_folder_contact_company = "Generated sele" +" " + now.strftime("%Y")
-    #input_description_contact = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, data["contact"]["textbox_folder_name"])))
-    #input_description_contact.send_keys(name_folder_contact_company)
     time.sleep(2)
-
-
-
 
 
 

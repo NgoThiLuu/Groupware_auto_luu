@@ -836,7 +836,6 @@ def write_layout_menubuilder(domain_name):
         
         try:
             Commands.Wait10s_ClickElement(data["menubuilder"]["button_create_title"])
-            #Commands.Wait10s_ClickElement(data["menubuilder"]["btn_close_clock_in"])
         except WebDriverException:
             Logging("Not show Clock In")
             Commands.Wait10s_ClickElement(data["menubuilder"]["btn_close_clock_in"])
@@ -845,7 +844,6 @@ def write_layout_menubuilder(domain_name):
 
 
         time.sleep(1)
-        #Commands.Wait10s_ClickElement(data["menubuilder"]["button_create_title"])
         Logging("1. Click Create successfully")
         time.sleep(1)
         Commands.Wait10s_ClickElement(data["menubuilder"]["btn_paste_copy_data"])
@@ -886,14 +884,13 @@ def write_layout_menubuilder(domain_name):
     time.sleep(8)
     try:
         Commands.Wait10s_ClickElement(data["menubuilder"]["btn_more_copy"])
-        #Commands.Wait10s_ClickElement(data["menubuilder"]["btn_close_clock_in"])
     except WebDriverException:
         Logging("Not show Clock In")
         Commands.Wait10s_ClickElement(data["menubuilder"]["btn_close_clock_in"])
         Commands.Wait10s_ClickElement(data["menubuilder"]["btn_more_copy"])
 
-   
-    #Commands.Wait10s_ClickElement(data["menubuilder"]["btn_more_copy"])
+
+
     time.sleep(2)
     Commands.Wait10s_ClickElement(data["menubuilder"]["btn_back_builder"])
     time.sleep(2)
