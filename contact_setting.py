@@ -96,7 +96,7 @@ def contact_create_folder(domain_name):
     time.sleep(1)
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, data["contact"]["show_folder_contact"])))
     forder_contact_create =  driver.find_element_by_xpath(data["contact"]["show_folder_contact"])
-    time.sleep(2)
+    time.sleep(3)
     if forder_contact_create.is_displayed():
         Logging(Green("Show Folder Contact successfully => PASS"))
         TestCase_LogResult(**data["testcase_result"]["contact"]["write_folder_contact"]["pass"])
@@ -191,7 +191,7 @@ def contact_manager_folder(domain_name):
 
     Logging("----------------------------------- Manage Company Folders-----------------------------------")
     driver.refresh()
-    time.sleep(7)
+    time.sleep(8)
 
     Commands.Wait10s_ClickElement(data["contact"]["admin_contact"])
     time.sleep(1)
@@ -312,7 +312,7 @@ def contact_manager_delete_folder(domain_name):
     Commands.Wait10s_ClickElement(data["contact"]["btn_close_delete_folder_manager"])
     time.sleep(1)
     Logging("=> Delete Manage Company Folders => PASS")
-    time.sleep(1)
+    time.sleep(4)
 
 
 
@@ -320,19 +320,23 @@ def contact_setting_general(domain_name):
 
     Logging("----------------------------------- Admin Settings - General-----------------------------------")
     Logging("----------------------------------- 1. General - Display Organization Contacts -----------------------------------")
+    time.sleep(1)
     Commands.Wait10s_ClickElement(data["contact"]["click_admin_setting"])
     Logging("1. Click Admin Settings successfully")
+    time.sleep(2)
     Commands.Wait10s_ClickElement(data["contact"]["select_view_contact_list"])
     Logging("2. Click Display Organization Contacts : LIST  successfully")
+    time.sleep(2)
     Commands.Wait10s_ClickElement(data["contact"]["btn_save_view_contact"])
     Logging("3. Click Display Organization Contacts : LIST  successfully")
+    time.sleep(2)
     Commands.Wait10s_ClickElement(data["contact"]["btn_close_delete_folder_manager"])
     Logging("4. Click Close  successfully")
     time.sleep(1)
     Commands.Wait10s_ClickElement(data["contact"]["select_my_company"])
     Logging("5. Click My Company successfully")
     driver.refresh()
-    time.sleep(6)
+    time.sleep(9)
     if 'A new version is available! Do you want to update?' in driver.page_source :
         Commands.Wait10s_ClickElement(data["contact"]["btn_update_version"])
         #WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, data["contact"]["btn_update_version"])))
@@ -358,16 +362,16 @@ def contact_setting_general(domain_name):
     else:
         Logging("Not Show setting")
         Commands.Wait10s_ClickElement(data["contact"]["admin_contact"])
-    time.sleep(1)
+    time.sleep(2)
     Commands.Wait10s_ClickElement(data["contact"]["click_admin_setting"])
     Commands.Wait10s_ClickElement(data["contact"]["select_view_contact_photo"])
-    time.sleep(1)
+    time.sleep(2)
     Logging("6. Click Display Organization Contacts : PHOTO  successfully")
     Commands.Wait10s_ClickElement(data["contact"]["btn_save_view_contact"])
-    time.sleep(1)
+    time.sleep(2)
     Commands.Wait10s_ClickElement(data["contact"]["btn_close_delete_folder_manager"])
     Logging("7. Click Close  successfully")
-    time.sleep(1)
+    time.sleep(2)
 
 
 def contact_setting_general_hide_my_contact(domain_name):
@@ -375,7 +379,9 @@ def contact_setting_general_hide_my_contact(domain_name):
     time.sleep(1)
     Commands.Wait10s_ClickElement(data["contact"]["hide_my_contacts"])
     Logging("7. Click Hide My Contacts  successfully")
+    time.sleep(2)
     Commands.Wait10s_ClickElement(data["contact"]["btn_save_view_contact"])
+    time.sleep(2)
     Commands.Wait10s_ClickElement(data["contact"]["btn_close_delete_folder_manager"])
     Commands.Wait10s_ClickElement(data["contact"]["manage_favorites"])
     Logging("1. Click Manage Favorites successfully")
