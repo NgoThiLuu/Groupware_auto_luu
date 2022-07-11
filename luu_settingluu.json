@@ -32,8 +32,6 @@
         "select_user_03":"//*[@id='addrbook_folder_share_modal']//a[contains(text(),'Selenium/AutomationTest2')]",
         "click_icon_add_user":"//div[@id='addrbook_folder_share_modal']//a[@data-action='add']//i",
         "save_add_user":"//div[@id='addrbook_folder_share_modal']//button[contains(.,'Save')]",
-        "home_contact_add_user":"//div[@id='addrbook_folder_share_modal']",
-        "check_add_user_contact":"//div[@id='addrbook_folder_share_modal']//ul[contains(@class,'bodybox ui-selectable')]/li[1]",
         "select_permission":"//div[@id='ngw.addrbook.setting']//div//li//select[contains(@data-ng-model, 'item.selectedOption')]",
         "select_per_contact":"Permission to Read/Write/Modify/Delete",
         "save_folder_my_contact":"//button[contains(@data-ng-click, 'saveFolder(form)')]",

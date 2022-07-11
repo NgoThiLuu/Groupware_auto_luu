@@ -174,6 +174,16 @@ def board_edit_folder(domain_name):
         time.sleep(1)
         Logging(Green("=> Edit Folder My Board => PASS"))
         TestCase_LogResult(**data["testcase_result"]["board"]["edit_folder_myboard"]["pass"])
+        '''
+        try:
+            forder_board_create = driver.find_element_by_xpath(data["board"]["show_folder_board"])
+            Logging(Green("=> Edit Folder My Board => PASS"))
+            TestCase_LogResult(**data["testcase_result"]["board"]["edit_folder_myboard"]["pass"])
+        except WebDriverException:
+            Logging(Red("=> Edit Folder My Board => FAIL"))
+            ValidateFailResultAndSystem("<div>[Board]5. Edit Folder My Board </div>")
+            TestCase_LogResult(**data["testcase_result"]["board"]["edit_folder_myboard"]["fail"])
+        '''
     except WebDriverException:
         Logging(Red("=> Not Show folder parent"))
         ValidateFailResultAndSystem("<div>[Board]5. Edit Folder My Board </div>")
