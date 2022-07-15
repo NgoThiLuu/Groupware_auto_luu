@@ -31,7 +31,6 @@ def board_create_folder(domain_name):
 
     Logging("------------------------------------------------------B. Menu Board------------------------------------------------------")
     driver.get(domain_name + "/board/list/comp_0/")
-    
     try:
         Commands.Wait10s_ClickElement(data["board"]["list_icon_hide_company_board"])
         Logging("2. Hide list Company Board successfully")
@@ -100,6 +99,9 @@ def board_create_folder(domain_name):
 
 def board_create_subfolder(domain_name):
     Logging("-------------- Write SubFolder My Board ---------------")
+
+    
+    
     try:
         driver.execute_script("window.scrollTo(100, 0)")
         time.sleep(2)
@@ -154,7 +156,7 @@ def board_create_subfolder(domain_name):
     except WebDriverException:
         Logging(Red("=> Not Show folder parent")) 
     time.sleep(1)
-
+    
 
 def board_edit_folder(domain_name):    
     Logging("--------------- Edit Folder My Board ----------------")
@@ -174,16 +176,6 @@ def board_edit_folder(domain_name):
         time.sleep(1)
         Logging(Green("=> Edit Folder My Board => PASS"))
         TestCase_LogResult(**data["testcase_result"]["board"]["edit_folder_myboard"]["pass"])
-        '''
-        try:
-            forder_board_create = driver.find_element_by_xpath(data["board"]["show_folder_board"])
-            Logging(Green("=> Edit Folder My Board => PASS"))
-            TestCase_LogResult(**data["testcase_result"]["board"]["edit_folder_myboard"]["pass"])
-        except WebDriverException:
-            Logging(Red("=> Edit Folder My Board => FAIL"))
-            ValidateFailResultAndSystem("<div>[Board]5. Edit Folder My Board </div>")
-            TestCase_LogResult(**data["testcase_result"]["board"]["edit_folder_myboard"]["fail"])
-        '''
     except WebDriverException:
         Logging(Red("=> Not Show folder parent"))
         ValidateFailResultAndSystem("<div>[Board]5. Edit Folder My Board </div>")
@@ -220,37 +212,42 @@ time.sleep(1)
 
 def access_menu_board(domain_name):
     try:
+        result_folder_parent = True
         board_create_folder(domain_name)
         Logging("Create folder successfully")
     except WebDriverException:
+        result_folder_parent = False
         Logging("fail to create folder")
 
     time.sleep(1)
 
-    try:
-        board_create_subfolder(domain_name)
-        Logging("Create Subfolder successfully")
-    except WebDriverException:
-        Logging("Create Subfolder Fail")
+    print("result_folder_parent :",result_folder_parent)
 
-    time.sleep(1)
+    if result_folder_parent == True :
+        try:
+            board_create_subfolder(domain_name)
+            Logging("Create Subfolder successfully")
+        except WebDriverException:
+            Logging("Create Subfolder Fail")
+
+        time.sleep(1)
 
 
-    try:
-        board_edit_folder(domain_name)
-        Logging("Edit folder successfully")
-    except WebDriverException:
-        Logging("Edit folder Fail")
+        try:
+            board_edit_folder(domain_name)
+            Logging("Edit folder successfully")
+        except WebDriverException:
+            Logging("Edit folder Fail")
 
-    time.sleep(1)
+        time.sleep(1)
 
-    try:
-        board_delete_folder(domain_name)
-        Logging("Delete folder successfully")
-    except WebDriverException:
-        Logging("Delete Folder Fail")
+        try:
+            board_delete_folder(domain_name)
+            Logging("Delete folder successfully")
+        except WebDriverException:
+            Logging("Delete Folder Fail")
 
-    time.sleep(1)
+        time.sleep(1)
 
 
 def is_Displayed(driver,xpath):
