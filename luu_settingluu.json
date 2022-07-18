@@ -283,12 +283,6 @@
 
 
 
-
-
-
-
-
-
     },
 
     "approval":
@@ -299,6 +293,8 @@
         "click_all_form":"//a[contains(text(),'All Forms')]", 
         "icon_create_all_form":"//div[@class='page-header']//button[contains(@data-ng-click, 'newForm()')]",
         "form_selection":"//input[@id='form-section']",
+        "btn_home_write_form":"//div[@id='ngw.approval.newForm ']",
+        "btn_back_write_form":"//div[@id='ngw.approval.newForm ']//div[@class='messagebar-item-left']//button[contains(@type,'submit')]",
         "form_name":"Luu Luu Ngo",
         "content_form_name":"Content Form in Approval",
         "agreement_route":"//form-section[contains(@on-click-node,'nodeTreeOnClick')]//a[contains(.,'Agreement Route')]", 
